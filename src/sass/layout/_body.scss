@@ -1,0 +1,59 @@
+.banner {
+    padding-top: 180px;
+    background-image: url(../img/banner-background.png);
+    background-size: cover;
+    background-position: top;
+}
+
+.industary {
+    max-width: 460px;
+    &-header {
+        padding: 30px 50px;
+        background-color: #ffac56;
+        span {
+            font-size: 14px;
+            line-height: 36px;
+            color: #ffffff;
+            font-weight: 400;
+            font-family: "Montserrat", sans-serif;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 27px;
+            line-height: 36px;
+            color: #ffffff;
+            font-weight: 400;
+            font-family: "Montserrat", sans-serif;
+            text-transform: uppercase;
+        }
+    }
+    &-body {
+        columns: 2;
+        &-block {
+            max-width: 460px;
+            &-item {
+                padding: 30px 50px;
+                background-color: #03b6e7;
+            }
+            &-item:hover {
+                cursor: pointer;
+                background-color: #00a6d3;
+            }
+        }
+    }
+}
+
+.button {
+    display: block;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #16d428;
+    padding: 10px 22px;
+    font-size: 13px;
+    letter-spacing: 0px;
+    line-height: 30px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 20px;
+}

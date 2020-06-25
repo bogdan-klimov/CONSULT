@@ -1,0 +1,76 @@
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.header-contact {
+    background-color: #262829;
+}
+
+.contact-us {
+    display: flex;
+    justify-content: flex-end;
+    .email, .phone {
+        padding: 0 15px;
+    }
+    .email {
+        border-right: 1px solid #5d6163;
+    }
+    span {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 36px;
+        color: #ffffff;
+        font-weight: 400;
+        font-family: "Montserrat", sans-serif;
+        color: #5d6163;
+        text-transform: uppercase;
+        .email-white, .phone-white {
+            color: #ffffff;
+        }
+    }
+}
+
+.header {
+    padding: 30px 0;
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.navigation {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    &-item {
+        padding: 0 16px;
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 30px;
+            color: #7a7a7a;
+            font-weight: 400;
+            text-transform: uppercase;
+            font-family: "Montserrat", sans-serif;
+        }
+        a:hover {
+            color: #ffac55;
+        }
+    }
+}
