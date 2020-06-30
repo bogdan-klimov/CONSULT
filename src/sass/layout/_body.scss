@@ -28,8 +28,9 @@
         }
     }
     &-body {
-        columns: 2;
         &-block {
+            display: flex;
+            flex-wrap: wrap;
             max-width: 460px;
             &-item {
                 padding: 30px 50px;
@@ -56,4 +57,164 @@
     font-weight: 400;
     font-family: "Montserrat", sans-serif;
     border-radius: 20px;
+    max-width: 87px;
+    text-align: center;
+}
+
+.about-us {
+    padding: 100px 0;
+    position: relative;
+    &-description {
+        text-align: right;
+        margin-right: 50px;
+    }
+    .container {
+        display: flex;
+    }
+    .button {
+       display: block;
+       justify-content: right; 
+    }
+    &-sup-title {
+        font-size: 14px;
+        letter-spacing: -1px;
+        line-height: 33px;
+        color: #898e8f;
+        font-weight: 400;
+        font-family: "Montserrat", sans-serif;
+        text-transform: uppercase;
+    }
+    h2 {
+        text-transform: uppercase;
+        font-size: 34px;
+        letter-spacing: -1px;
+        line-height: 33px;
+        color: #343a3b;
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+    }
+    &-description-text {
+        font-size: 15px;
+        line-height: 28px;
+        color: #838b8c;
+        font-weight: 400;
+        font-family: "Domine", sans-serif;
+        text-align: right;
+    }
+    &-description-img {
+        position: relative;
+        .blue-box {
+            position: absolute;
+            z-index: 100;
+            left: calc(50% - 115px);
+            top: 60%;
+        }
+    }
+}
+
+.our-steps {
+    padding: 90px 0;
+    background-color: #e7eff1;
+    &-header {
+        display: flex;
+        flex-direction: column;
+        text-transform: uppercase;
+        font-size: 34px;
+        letter-spacing: -1px;
+        line-height: 33px;
+        color: #343a3b;
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+        .h2-small-text {
+            font-size: 14px;
+            color: #898e8f;
+            font-weight: 400;
+        }
+    }
+    &-list {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        &-item {
+            max-width: 310px;
+            display: flex;
+            flex-direction: column;
+            .our-steps-list-item-img {
+                max-width: 68px;
+            }
+            &-number {
+                font-size: 20px;
+                letter-spacing: 0px;
+                line-height: 30px;
+                color: #16d428;
+                font-weight: 400;
+                font-family: "Montserrat", sans-serif;
+                margin-top: 10px;
+            }
+            &-header {
+                font-size: 18px;
+                letter-spacing: -1px;
+                line-height: 33px;
+                color: #343a3b;
+                font-weight: 700;
+                font-family: "Montserrat", sans-serif;
+            }
+            &-description {
+                font-size: 15px;
+                line-height: 28px;
+                color: #838b8c;
+                font-weight: 400;
+                font-family: "Domine", sans-serif;
+            }
+        }
+    }
+}
+
+.testimonial {
+    padding: 91px 0;
+    background-color: #03b6e7;
+    &-header {
+        display: flex;
+        flex-direction: column;
+        font-size: 27px;
+        letter-spacing: -1px;
+        line-height: 33px;
+        color: #ffffff;
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+    }
+    &-description {
+        max-width: 909px;
+        font-size: 15px;
+        line-height: 28px;
+        color: #ddf8ff;
+        font-weight: 400;
+        font-family: "Domine", sans-serif;
+        &-underline {
+            width: 17px;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 30px 0 0 50px;
+        }
+    }
+    &-description-text:before {
+        content: "\201c";
+    }
+    &-description-text:after {
+        content: "\201d";
+    }
+    .testimonial-small-text {
+        color: #a6ecff;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .clients-list-block {
+        display: flex;
+        margin-top: 50px;
+        justify-content: space-between; 
+        max-width: 780px;
+        &-item {
+            display: flex;
+        }
+    }
 }
