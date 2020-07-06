@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" width="24" height="16">
+	<style>
+		tspan { white-space:pre }
+		.txt0 { font-size: 20px;line-height: 30px;fill: #16d428;font-weight: 400;font-family: "Montserrat-Regular", "Montserrat" } 
+	</style>
+	<g id=":::Our Steps">
+		<g id="::02_choose your service">
+			<text id="02" style="transform: matrix(1,0,0,1,-1,15)" >
+				<tspan x="0" y="0" class="txt0" dx="0 0" >02</tspan>
+			</text>
+		</g>
+	</g>
+</svg>
