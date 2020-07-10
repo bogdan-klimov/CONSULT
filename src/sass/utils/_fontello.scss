@@ -26,11 +26,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
- 
+
+
+.icon-right-open-round {
+  .icon-right-open {
+    border: 1.5px solid #ffffff;
+    border-radius: 50%;
+    padding: 6px 12px 4px 13px;
+    font-size: 19px;
+  }
+}
+
 .icon-right-open:before { 
   content: '\e804'; 
   color: #ffffff;
 }
+
 .icon-left-open:before { 
   content: '\e805'; 
+  color: #ffffff;
 }

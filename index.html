@@ -8,30 +8,29 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <div class="header-contact">
-        <div class="container">
-            <div class="contact-us">
-                <div class="email">
-                    <span>
-                        <span class="email-white">
-                            Email
-                        </span> 
-                        : info@consultplus.com
-                    </span>
-                </div>
-                <div class="phone">
-                    <span>
-                        <span class="phone-white">
-                            Phone
-                        </span> 
-                        : +91 5685 6664 555
-                    </span>
+    <header class="header">
+        <div class="header-contact">
+            <div class="container">
+                <div class="contact-us">
+                    <div class="email">
+                        <span>
+                            <span class="email-white">
+                                Email
+                            </span> 
+                            : info@consultplus.com
+                        </span>
+                    </div>
+                    <div class="phone">
+                        <span>
+                            <span class="phone-white">
+                                Phone
+                            </span> 
+                            : +91 5685 6664 555
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <header class="header">
-        <div class="icon-right-open"></div>
         <div class="container">
             <h1 class="logo">
                 <a href="#">
@@ -51,6 +50,12 @@
         </div>
     </header>
     <section class="banner">
+        <div class="left-rectangle-arrow">
+            <div class="icon-left-open"></div>
+        </div>
+        <div class="right-rectangle-arrow">
+            <div class="icon-right-open"></div>
+        </div>
         <div class="container">
             <div class="industry">
                 <div class="industry-header">
@@ -66,7 +71,9 @@
                                     Education
                                 </span>
                             </div>
-                            <div class="round-arrow"></div>
+                            <div class="icon-right-open-round">
+                                <div class="icon-right-open"></div>
+                            </div>
                         </li>
                         <li class="industry-body-block-item">
                             <div class="industry-item-left">
@@ -75,7 +82,9 @@
                                     Business
                                 </span>
                             </div>
-                            <div class="round-arrow"></div>  
+                            <div class="icon-right-open-round">
+                                <div class="icon-right-open"></div>
+                            </div>
                         </li>
                         <li class="industry-body-block-item">
                             <div class="industry-item-left">
@@ -84,7 +93,9 @@
                                     Technology
                                 </span>
                             </div>
-                            <div class="round-arrow"></div>
+                            <div class="icon-right-open-round">
+                                <div class="icon-right-open"></div>
+                            </div>
                         </li>
                         <li class="industry-body-block-item">
                             <div class="industry-item-left">
@@ -93,7 +104,9 @@
                                     Real estate
                                 </span>
                             </div>
-                            <div class="round-arrow"></div>
+                            <div class="icon-right-open-round">
+                                <div class="icon-right-open"></div>
+                            </div>
                         </li>
                         <li class="industry-body-block-item">
                             <div class="industry-item-left">
@@ -102,7 +115,9 @@
                                     Banking
                                 </span>
                             </div>
-                            <div class="round-arrow"></div>
+                            <div class="icon-right-open-round">
+                                <div class="icon-right-open"></div>
+                            </div>
                         </li>
                         <li class="industry-body-block-item">
                             <a href="#" class="button">view More</a>
@@ -133,7 +148,19 @@
                 <a href="#" class="button">Read More</a>
             </div>
             <div class="about-us-description-img">
-                <img src="assets/img/blue-box.png" alt="blue-box" class="blue-box rotate-center">
+                <div class="blue-box-wrapper rotate-center">
+                    <div class="blue-box">
+                        <img src="assets/img/badge-icon.jpg" alt="badge-icon" class="badge-icon">
+                        <div class="blue-box-description">
+                            <span class="blue-box-description-number">
+                                25
+                            </span>
+                            <span class="blue-box-description-text">
+                                year of excellence
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <img src="assets/img/about-us-description-img.png" alt="about-us-description-img">
             </div>
         </div>
@@ -149,9 +176,7 @@
             <ul class="our-steps-list">
                 <li class="our-steps-list-item">
                     <img src="assets/img/icon-industary.png" alt="icon-industary" class="our-steps-list-item-img">
-                    <span class="our-steps-list-item-number">
-                        01
-                    </span>
+                    <div class="our-steps-list-item-number"></div>
                     <span class="our-steps-list-item-header">
                         Choose your industry
                     </span>
@@ -163,11 +188,9 @@
                 </li>
                 <li class="our-steps-list-item">
                     <img src="assets/img/icon-service.png" alt="icon-choose" class="our-steps-list-item-img">
-                    <span class="our-steps-list-item-number">
-                        02
-                    </span>
+                    <div class="our-steps-list-item-number"></div>
                     <span class="our-steps-list-item-header">
-                        Choose your industry
+                        Choose your service
                     </span>
                     <p class="our-steps-list-item-description">
                         Lorem Ipsum is simply dummy text of the printing 
@@ -177,11 +200,9 @@
                 </li>
                 <li class="our-steps-list-item">
                     <img src="assets/img/icon-boost-business.png" alt="icon-boost-business" class="our-steps-list-item-img">
-                    <span class="our-steps-list-item-number">
-                        03
-                    </span>
+                    <div class="our-steps-list-item-number"></div>
                     <span class="our-steps-list-item-header">
-                        Choose your industry
+                        Boost your business
                     </span>
                     <p class="our-steps-list-item-description">
                         Lorem Ipsum is simply dummy text of the printing 
@@ -202,20 +223,22 @@
             </h2>
             <div class="testimonial-description">
                 <div class="testimonial-description-text">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the 
-                        printing and typesetting industry. Lorem 
-                        Ipsum has been the industry's standard 
-                        dummy text ever since the 1500s, when an 
-                        unknown printer took a galley of type and 
-                        scrambled it to make a type speci
-                        book. It has survived not only five centuries, 
-                        but also the leap into electronic typesetting, 
-                        remaining essentially.
-                        unchanged.
-                    </p>
+                    <div>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the 
+                            printing and typesetting industry. Lorem 
+                            Ipsum has been the industry's standard 
+                            dummy text ever since the 1500s, when an 
+                            unknown printer took a galley of type and 
+                            scrambled it to make a type speci
+                            book. It has survived not only five centuries, 
+                            but also the leap into electronic typesetting, 
+                            remaining essentially.
+                            unchanged.
+                        </p>
+                        <div class="testimonial-description-underline"></div>
+                    </div>
                 </div>
-                <div class="testimonial-description-underline"></div>
                 <div class="clients-list">
                     <ul class="clients-list-block">
                         <li class="clients-list-block-item">
