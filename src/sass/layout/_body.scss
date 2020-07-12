@@ -1,27 +1,26 @@
 @import 'utils/variables';
-* {
-    box-sizing: border-box;
-}
-
-.body {
-    counter-reset: list;
-}
-
+@import 'utils/mixins';
 .banner {
     position: relative;
     padding-top: 180px;
-    background-image: url(../img/banner-background.png);
-    background-size: cover;
-    background-position: top;
+    
+    background: {
+        image: url(../img/banner-background.png);
+        size: cover;
+        position: top;
+    };
+
     .left-rectangle-arrow, .right-rectangle-arrow {
-        padding: 44px 17px;
         background-color: #262829;
         max-width: 46px;
         position: absolute;
-        top: calc(50% - 53px);
-    }
-    .left-rectangle-arrow, .right-rectangle-arrow:hover {
-        cursor: pointer;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 110px;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .left-rectangle-arrow {
         left:0;
@@ -29,13 +28,14 @@
     .right-rectangle-arrow {
         right:0;
     }
-    .icon-right-open:before {
-        font-size: 20px;
-        color: #ffffff;
-        margin: 0;
-        width: 100%;
+   
+    .left-rectangle-arrow,.right-rectangle-arrow {
+        .icon-right-open, .icon-left-open {
+            padding: 44px 17px;
+        }
     }
-    .icon-left-open:before {
+
+    .icon-right-open:before, .icon-left-open:before {
         font-size: 20px;
         margin: 0;
         width: 100%;
@@ -48,20 +48,16 @@
         padding: 30px 50px;
         background-color: #ffac56;
         span {
-            font-size: 14px;
+            text-transform: uppercase;
             line-height: 36px;
             color: #ffffff;
-            font-weight: 400;
-            font-family: $main-family;
-            text-transform: uppercase;
+            @include font-props ($main-family, 14px, 400);
         }
         h2 {
-            font-size: 27px;
+            text-transform: uppercase;
             line-height: 36px;
             color: #ffffff;
-            font-weight: 400;
-            font-family: $main-family;
-            text-transform: uppercase;
+            @include font-props ($main-family, 27px, 400);
         }
     }
     &-body {
@@ -70,13 +66,11 @@
             flex-wrap: wrap;
             max-width: 460px;
             &-item-text {
+                @include font-props ($main-family, 14px, 400);
                 margin-top: 10px;
-                font-size: 14px;
                 letter-spacing: 0px;
                 line-height: 30px;
                 color: #ffffff;
-                font-weight: 400;
-                font-family: $main-family;
                 text-transform: uppercase;
             }
             &-item {
@@ -122,12 +116,10 @@
     cursor: pointer;
     background-color: #16d428;
     padding: 10px 22px;
-    font-size: 13px;
+    @include font-props ($main-family, 13px, 400);
     letter-spacing: 0px;
     line-height: 30px;
     color: #ffffff;
-    font-weight: 400;
-    font-family: $main-family;
     border-radius: 20px;
     max-width: 130px;
     text-align: center;
@@ -149,29 +141,23 @@
        max-width: 140px;
     }
     &-sup-title {
-        font-size: 14px;
+        @include font-props ($main-family, 14px, 400);
         letter-spacing: -1px;
         line-height: 33px;
         color: #898e8f;
-        font-weight: 400;
-        font-family: $main-family;
         text-transform: uppercase;
     }
     h2 {
         text-transform: uppercase;
-        font-size: 34px;
+        @include font-props ($main-family, 34px, 800);
         letter-spacing: -1px;
         line-height: 33px;
         color: #343a3b;
-        font-weight: 800;
-        font-family: $main-family;
     }
     &-description-text {
-        font-size: 15px;
+        @include font-props ($domine-family, 15px, 400);
         line-height: 28px;
         color: #838b8c;
-        font-weight: 400;
-        font-family: "Domine", sans-serif;
         text-align: right;
     }
     &-description-img {
@@ -189,30 +175,32 @@
             margin: auto;
             .blue-box {
                 border: 1px solid #35c5ec;
+                height: 235px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                overflow: hidden;
                 .badge-icon {
-                    margin: 0 auto;
-                    display: block;
+                    position: absolute;
+                    top: -21px;
                 }
                 &-description {
-                    padding: 40px 0 30px;
+                    padding: 0 0 20px;
                     display: flex;
                     flex-direction: column;
                     &-number {
-                        font-size: 75px;
+                        @include font-props ($main-family, 75px, 400);
                         letter-spacing: -4px;
                         color: #ffffff;
-                        font-weight: 400;
-                        font-family: $main-family;
                         text-align: center;
                     }
                     &-text {
+                        @include font-props ($main-family, 13px, 400);
                         text-transform: uppercase;
-                        font-size: 13px;
                         letter-spacing: 0px;
                         line-height: 20px;
                         color: #ffffff;
-                        font-weight: 400;
-                        font-family:$main-family;
                         text-align: center;
                     }
                 }
@@ -225,15 +213,13 @@
     padding: 90px 0;
     background-color: #e7eff1;
     &-header {
+        @include font-props ($main-family, 34px, 800);
         display: flex;
         flex-direction: column;
         text-transform: uppercase;
-        font-size: 34px;
         letter-spacing: -1px;
         line-height: 33px;
         color: #343a3b;
-        font-weight: 800;
-        font-family: $main-family;
         .h2-small-text {
             font-size: 14px;
             color: #898e8f;
@@ -251,32 +237,29 @@
             .our-steps-list-item-img {
                 max-width: 68px;
             }
+            &-number {
+                margin: 30px 0 5px;
+            }
             &-number::before {
+                @include font-props ($main-family, 20px, 400);
                 counter-increment: list;
                 content: "0" counter(list);      
-                font-size: 20px;
-                letter-spacing: 0px;
+                letter-spacing: 0;
                 line-height: 30px;
                 color: #16d428;
-                font-weight: 400;
-                font-family: $main-family;
                 margin-top: 10px;
             }
             &-header {
-                font-size: 18px;
+                @include font-props ($main-family, 18px, 700);
                 letter-spacing: -1px;
                 line-height: 33px;
                 color: #343a3b;
-                font-weight: 700;
-                font-family: $main-family;
                 text-transform: uppercase;
             }
             &-description {
-                font-size: 15px;
+                @include font-props ($main-family, 15px, 400);
                 line-height: 28px;
                 color: #838b8c;
-                font-weight: 400;
-                font-family: "Domine", sans-serif;
             }
         }
     }
@@ -312,27 +295,23 @@
         }
     }
     &-header {
+        @include font-props ($main-family, 27px, 800);
         display: flex;
         flex-direction: column;
-        font-size: 27px;
         letter-spacing: -1px;
         line-height: 33px;
         color: #ffffff;
-        font-weight: 800;
-        font-family: $main-family;
         text-transform: uppercase;
     }
     &-description {
+        @include font-props ($domine-family, 15px, 400);
         margin-top: 50px;
-        font-size: 15px;
         line-height: 28px;
         color: #ddf8ff;
-        font-weight: 400;
-        font-family: "Domine", sans-serif;
         &-text {
             display: flex;
             justify-content: space-between;
-            p{
+            p {
                 max-width: 890px;
                 margin: 0;
             }
@@ -387,16 +366,14 @@
 
 .news-letter-header, .navigation-header, 
 .industry-list-header, .follow-us-header {
-    font-size: 20px;
+    @include font-props ($main-family, 20px, 700);
     letter-spacing: 0px;
     line-height: 33px;
     color: #e1e1e1;
-    font-weight: 700;
-    font-family: $main-family;
     text-transform: uppercase;
 }
 
-//////////////////////////////////@extend
+//////////////////////////////////
 
 .rotate-center:hover {
     animation: rotate-center 0.6s ease-in-out both;

@@ -1,26 +1,4 @@
-html {
-    scroll-behavior: smooth;
-}
-
-h1, h2, h3, h4 {
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
+@import 'utils/variables';
 
 .header-contact {
     background-color: #262829;
@@ -41,7 +19,7 @@ ul {
         line-height: 36px;
         color: #ffffff;
         font-weight: 400;
-        font-family: "Montserrat", sans-serif;
+        font-family: $main-family;
         color: #5d6163;
         text-transform: uppercase;
         .email-white, .phone-white {
@@ -50,11 +28,17 @@ ul {
     }
 }
 
-.header {
+header {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    height: 130px;
+    display: block;
+    z-index: 9999;
     .container {
         display: flex;
         justify-content: space-between;
-        padding: 15px 0;
+        padding: 15px;
     }
     h1 {
         display: flex;
@@ -87,7 +71,7 @@ ul {
             color: #7a7a7a;
             font-weight: 400;
             text-transform: uppercase;
-            font-family: "Montserrat", sans-serif;
+            font-family: $main-family;
             transition: .5s;
         }
         a:hover {
