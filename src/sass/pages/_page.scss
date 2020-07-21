@@ -1,21 +1,31 @@
+@import 'utils/variables';
+@import 'utils/mixins';
 .first-section {
     padding: 116px 0 116px;
-    background-image: url(../img/page-background.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: {
+        image: url(../img/page-background.png);
+        position: center;
+        size: cover;
+        repeat: no-repeat;
+    }
     .container {
         position: relative;
+        height: 54px;
     }
     h2 {
-        font-size: 36px;
         letter-spacing: -1px;
         line-height: 30px;
         color: #1c1c1c;
-        font-weight: 300;
         text-transform: uppercase;
-        font-family: "Lato", sans-serif;
         z-index: 2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 33px;
+        margin: auto;
+        display: block;
+        margin-left: 16px;
+        @include font-props ($lato-family, 36px, 300);
     }
 }
 
@@ -38,10 +48,8 @@
         justify-content: space-between;
     } 
 }
-// .main-section #check-id:checked ~ .share-block-icon {
 
-// }
-.right-part {
+.main-block {
     max-width: 848px;
     .h2-small-text {
         font-size: 14px;     
@@ -51,12 +59,10 @@
         display: flex;
         flex-direction: column;
         text-transform: uppercase;
-        font-size: 34px;
         letter-spacing: -1px;
         line-height: 33px;
         color: #343a3b;
-        font-weight: 800;
-        font-family: "Montserrat";
+        @include font-props ($main-family, 34px, 800);
     }
 }
 
@@ -66,29 +72,24 @@
     border-bottom: 1px solid #e2e6e7;
     &-img {
         position: relative;
+        height: 350px;
         &-date {
             max-width: 114px;
             background-color: #ffac55;
             text-transform: uppercase;
-            font-size: 14px;
             letter-spacing: 0px;
-            line-height: 33px;
             color: #ffffff;
-            font-weight: 400;
-            font-family: "Montserrat", sans-serif;
-            bottom: 53px;
+            bottom: 40px;
+            @include font-props ($main-family, 14px, 600);  
         }
         &-heading {
             background-color: #222222;
-            font-size: 18px;
             letter-spacing: -1px;
-            line-height: 33px;
             color: #ffffff;
-            font-weight: 700;
-            font-family: "Montserrat", sans-serif;
             max-width: 457px;
             text-transform: uppercase;
             bottom: 0;
+            @include font-props ($main-family, 18px, 700);
         }
         &-heading, &-date {
             left: 0;
@@ -98,12 +99,10 @@
     }
     &-description {
         max-width: 757px;
-        font-size: 15px;
         line-height: 28px;
         color: #838b8c;
-        font-weight: 400;
-        font-family: "Domine", sans-serif;
         margin: 45px 0;
+        @include font-props ($domine-family, 15px, 400);
     }
     .actions {
         display: flex;
@@ -114,14 +113,11 @@
             display: flex;
             align-items: center;
             &-text {
-                margin-right: 10px;
-                display: block;
-                font-size: 13px;
+                margin-right: 50px;
                 line-height: 28px;
                 color: #222222;
-                font-weight: 400;
-                font-family: "Montserrat", sans-serif;
                 text-transform: uppercase;
+                @include font-props ($main-family, 13px, 800);
             }
             &-icon {
                 padding: 14px 10px 11px 11px;
@@ -137,16 +133,14 @@
 }
 
 .search-text {
-    font-size: 14px;
     letter-spacing: -1px;
     line-height: 33px;
     color: #898e8f;
-    font-weight: 400;
-    font-family: "Montserrat";
     text-transform: uppercase;
+    @include font-props ($main-family, 14px, 400);
 }
 
-.left-part {
+.aside-block {
     max-width: 266px;
     width: 100%;
     .search {
@@ -157,42 +151,36 @@
         align-items: center;
         input {
             padding: 5px 0 5px 10px;
-            font-size: 15px;
             line-height: 28px;
             color: #b5bdbe;
-            font-weight: 400;
-            font-family: "Domine", sans-serif;
             border: 0;
             outline: none;
             width: 225px;
+            @include font-props ($domine-family, 15px, 400);
         }
     }
     .categories {
         margin-top: 40px;
         h3 {
             text-transform: uppercase;
-            font-size: 18px;
             letter-spacing: -1px;
             line-height: 33px;
             color: #343a3b;
-            font-weight: 700;
-            font-family: "Montserrat", sans-serif;
+            @include font-props ($main-family, 18px, 700);
         }
         .categories-list {
             list-style-type: '\BB';
             font-size: 15px;
             line-height: 36px;
             color: #ffac55;
-            font-family: "Font Awesome", sans-serif;
+            font-family: $font-awasome;
             &-item {
                 margin: 10px 0 10px 8px;
                 &-text {
                     margin-left: 20px;
-                    font-size: 15px;
                     line-height: 36px;
                     color: #838b8c;
-                    font-weight: 400;
-                    font-family: "Domine", sans-serif;
+                    @include font-props ($domine-family, 15px, 400);
                 }
             }
         }
@@ -202,36 +190,32 @@
 .featured-post {
     margin-top: 50px;
     h3 {
-        font-size: 18px;
         letter-spacing: -1px;
         line-height: 33px;
         color: #343a3b;
-        font-weight: 700;
-        font-family: "Montserrat", sans-serif;
         text-transform: uppercase;
+        @include font-props ($main-family, 18px, 700);
     }
     &-list {
         &-item {
-            display: flex;
-            flex-direction: column;
+            &-description {
+                display: flex;
+                flex-direction: column;
+            }
             .featured-post-description {
                 margin-top: 10px;
                 text-transform: uppercase;
-                font-size: 14px;
                 letter-spacing: -1px;
                 line-height: 21px;
                 color: #343a3b;
-                font-weight: 400;
-                font-family: "Montserrat", sans-serif;
+                @include font-props ($main-family, 14px, 400);
             }
             .featured-post-date {
                 text-transform: uppercase;
-                font-size: 14px;
                 letter-spacing: -1px;
                 line-height: 21px;
                 color: #ffc180;
-                font-weight: 400;
-                font-family: "Montserrat", sans-serif;
+                @include font-props ($main-family, 14px, 400);
             }
             span {
                 padding: 4px 0;
@@ -254,11 +238,9 @@ audio {
         display: flex;
         &-text {
             max-width: 652px;
-            font-size: 15px;
             line-height: 28px;
             color: #ffffff;
-            font-weight: 400;
-            font-family: "Domine", sans-serif;
+            @include font-props ($domine-family, 15px, 400);
         }
     }
 }
@@ -273,18 +255,16 @@ audio {
 }
 
 .blue-block-wrapper:after, .blue-block-wrapper:before {
-    font-size: 100px;
     line-height: 28px;
     color: #ffffff;
-    font-weight: 400;
-    font-family: "Montserrat", sans-serif;
+    @include font-props ($main-family, 100px, 800);
 }
 
 .arrows-block {
     margin-top: 40px;
     display: flex;
     max-width: 194px;
-    .next-block, .previous-block {
+    .arrow-link {
         display: flex;
         align-items: center;
     }
@@ -296,12 +276,10 @@ audio {
         padding-left: 17px;
     } 
     .arrows-block-left, .arrows-block-right {
-        font-size: 14px;
         line-height: 28px;
         color: #222222;
-        font-weight: 400;
-        font-family: "Montserrat", sans-serif;
         text-transform: uppercase;
+        @include font-props ($main-family, 14px, 400);
     }
     .arrows-block-left {
         margin-left: 10px;
@@ -309,4 +287,108 @@ audio {
     .arrows-block-right {
         margin-right: 10px;
     }
+}
+
+//////////////////////////////////
+
+.actions {
+    position: relative;
+    height: 47px;
+}
+
+.share-block-text {
+    display: flex;
+    align-items: center;
+}
+
+.share-block-date {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-right: 25px;
+    right: 125px;
+    margin: auto 0;
+    border-right: 1px solid #dbdbdb;
+    max-height: 20px;
+    line-height: 28px;
+    color: #222222;
+    text-transform: uppercase;
+    @include font-props ($main-family, 13px, 800);
+}
+
+[type="checkbox"] {
+    visibility: hidden;
+}
+
+.share-block {
+    border-radius: 50%;
+    max-width: 45px;
+    border: 1px solid #d2dcde;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    transition: .5s all;
+}
+
+.links {
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    border: 1.0px solid #d2dbdd;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    transition: .5s;
+}
+
+.text {
+    display: none;
+    padding: 0 15px;
+
+}
+
+#check-id:checked ~ .links, #check-id-2:checked ~ .links,
+#check-id-3:checked ~ .links, #check-id-4:checked ~ .links,
+#check-id-5:checked ~ .links {
+    width: 158px;
+    transition: .5s;
+    .share-block {
+        background-color: #ffac55;
+        border: none;
+        color: white;
+    }
+    .text {
+        display: flex;
+        align-items: center;
+    }
+}
+
+#check-id-3:checked ~ .share-block-date,
+#check-id-4:checked ~ .share-block-date {
+    display: none;
+} 
+
+.blog-3, .blog-4,
+.blog-5 {
+    font-weight: 00;
+}
+
+.icon-play-circled-green {
+    color: #16d428;
+    transform: rotate(180deg);
+}
+
+.icon-play-circled-orange {
+    color: #ffac55;
+}
+
+///////////////////////////////////////
+
+div:target {
+    background-color: red;
 }

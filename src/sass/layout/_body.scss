@@ -110,6 +110,11 @@
     }
 }
 
+.client-1, .client-2, .client-3 {
+    width: 68px;
+    height: 68px;
+}
+
 .button {
     display: flex;
     align-items: center;
@@ -125,12 +130,21 @@
     text-align: center;
 }
 
+.our-steps-list-item-img {
+    height: 63px;
+    width: 63px;
+}
+
 .about-us {
     padding: 100px 0;
     position: relative;
     &-description {
         text-align: right;
         margin-right: 50px;
+    }
+    .about-us-description-img {
+        width: 455px;
+        height: 253px;
     }
     .container {
         display: flex;
@@ -208,6 +222,13 @@
         }
     }
 }
+
+
+.badge-icon {
+    width: 100px;
+    height: 107px;
+}
+
 .h2-small-text {
     font-size: 14px;
     color: #898e8f;
@@ -234,7 +255,7 @@
             display: flex;
             flex-direction: column;
             .our-steps-list-item-img {
-                max-width: 68px;
+                max-width: 108px;
             }
             &-number {
                 margin: 30px 0 5px;
@@ -387,13 +408,3 @@
     }
   }
   
-
-/////////////////////////////
-
-.about-us-sup-title:before {
-    content:"\00bb";
-    font-size: 15px;
-    line-height: 36px;
-    font-weight: 400;
-    color: #ffac55;
-}
