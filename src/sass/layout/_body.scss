@@ -123,9 +123,9 @@
     background-color: #16d428;
     padding: 10px 22px;
     @include font-props ($main-family, 13px, 400);
-    letter-spacing: 0px;
+    letter-spacing: 0;
     color: #ffffff;
-    border-radius: 20px;
+    border-radius: 26px;
     max-width: 160px;
     text-align: center;
 }
@@ -288,18 +288,33 @@
 .testimonial {
     padding: 91px 0;
     background-color: #03b6e7;
-    .clients-list {
+    .visible-window {
+        height: 68px;
+        max-width: 715px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    .clients-slider {
         margin-top: 50px;
+        margin-left: -35px;
         display: flex;
         justify-content: space-between;
-        &-block-item:nth-child(2), &-block-item:nth-child(3) {
-            margin-left: 50px;
+    }
+    .clients-list {
+        display: flex;
+        justify-content: space-between;
+        &-block-item {
+            margin-left: 35px;
         }
         &-block {
+            left: 0;
+            transition: .5s;
+            position: absolute;
             display: flex;
             justify-content: space-between; 
-            max-width: 780px;
             &-item {
+                min-width: 203px;
                 display: flex;
                 .client-description {
                     margin-left: 30px;
@@ -360,6 +375,7 @@
     align-items: center;
     display: flex;
     &-item {
+        cursor: pointer;
         width: 15px;
         height: 15px;
         border: 2px solid #ffffff;
@@ -375,8 +391,7 @@
             display: none;
         }
     }
-    &-item:hover {
-        cursor: pointer;
+    &-item-active {
         border: 3px solid #16d428;
         .point {
             display: block;
@@ -401,10 +416,10 @@
 
 @keyframes rotate-center {
     0% {
-      transform: rotate(0);
+        transform: rotate(0);
     }
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  
+}
+

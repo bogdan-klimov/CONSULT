@@ -339,7 +339,7 @@ audio {
     position: absolute;
     right: 0;
     background-color: #ffffff;
-    border: 1.0px solid #d2dbdd;
+    // border: 1.0px solid #d2dbdd;
     border-radius: 25px;
     display: flex;
     flex-direction: row-reverse;
@@ -348,8 +348,6 @@ audio {
 
 .text {
     display: none;
-    padding: 0 15px;
-
 }
 
 #check-id:checked ~ .links, #check-id-2:checked ~ .links,
@@ -357,6 +355,7 @@ audio {
 #check-id-5:checked ~ .links {
     width: 158px;
     transition: .5s;
+    border: 1.0px solid #d2dbdd;
     .share-block {
         background-color: #ffac55;
         border: none;
@@ -365,6 +364,8 @@ audio {
     .text {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        width: 60%;
     }
 }
 
