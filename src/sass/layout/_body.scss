@@ -3,13 +3,21 @@
 .banner {
     position: relative;
     padding-top: 180px;
-    
-    background: {
+    &-backgrounds {
+        transition: 1s;
+        opacity: 0;
+        z-index: -1;
+        height: 742px;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: {
         image: url(../img/banner-background.png);
         size: cover;
         position: top;
     };
-
+    }
     .left-rectangle-arrow, .right-rectangle-arrow {
         background-color: #262829;
         max-width: 46px;
@@ -40,6 +48,10 @@
         margin: 0;
         width: 100%;
     }
+}
+
+.backgrounds-active {
+    opacity: 1;
 }
 
 .industry {
@@ -110,7 +122,7 @@
     }
 }
 
-.client-1, .client-2, .client-3 {
+.client-img {
     width: 68px;
     height: 68px;
 }
@@ -288,7 +300,7 @@
 .testimonial {
     padding: 91px 0;
     background-color: #03b6e7;
-    .visible-window {
+    .visible {
         height: 68px;
         max-width: 715px;
         width: 100%;
@@ -302,8 +314,6 @@
         justify-content: space-between;
     }
     .clients-list {
-        display: flex;
-        justify-content: space-between;
         &-block-item {
             margin-left: 35px;
         }
