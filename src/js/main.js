@@ -1,13 +1,11 @@
 const slider = document.getElementById("clients-list-block");
 const visible = document.getElementById("visible");
-
-// const testimonialDescription = document.getElementById("testimonial-description");
 const sliderWrapper = document.getElementById("clients-slider");
+const SLIDES_ON_PAGE = 3;
 
 const sliderBtnWrapper = document.createElement("ul");
 sliderWrapper.append(sliderBtnWrapper);
 sliderBtnWrapper.classList.add("clients-list-carousel");
-
 
 for (let el in data) {
     const client = document.createElement('li');
@@ -39,12 +37,7 @@ for (let el in data) {
 
 const sliderEl = document.getElementsByClassName("clients-list-block-item");
 
-
-
-
-const sliderElOnPage = 3;
-
-const sliderElForBtn = Math.ceil(sliderEl.length / sliderElOnPage);
+const sliderElForBtn = Math.ceil(sliderEl.length / SLIDES_ON_PAGE);
 
 for (let i = 0; i < sliderElForBtn; i++) {
     const sliderBtn = document.createElement("li");

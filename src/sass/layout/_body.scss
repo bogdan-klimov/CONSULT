@@ -12,11 +12,12 @@
         width: 100%;
         top: 0;
         left: 0;
-        background: {
-        image: url(../img/banner-background.png);
+        background: {    
         size: cover;
         position: top;
     };
+
+
     }
     .left-rectangle-arrow, .right-rectangle-arrow {
         background-color: #262829;
@@ -48,6 +49,18 @@
         margin: 0;
         width: 100%;
     }
+}
+
+.bgrnd1 {
+    background-image: url('../img/banner-background.png');
+}
+
+.bgrnd2 {
+    background-image: url('../img/banner-background2.jpg');
+}
+
+.bgrnd3 {
+    background-image: url('../img/banner-background3.jpeg');
 }
 
 .backgrounds-active {
