@@ -110,3 +110,8 @@ rightBtn.onclick = function () {
 
 	backgroundsBanner[idx].classList.add('backgrounds-active');
 };
+
+/////////////////////////////////////////////////
+
+const mainBlock = documnet.getElementById("about-us-nav");
+
