@@ -50,12 +50,13 @@
 }
 
 .main-block {
+    overflow: hidden;
     max-width: 848px;
     .h2-small-text {
         font-size: 14px;     
         color: #898e8f; 
     }
-    h2 {
+    .title-blogs {
         display: flex;
         flex-direction: column;
         text-transform: uppercase;
@@ -66,7 +67,7 @@
     }
 }
 
-.blog-1, .blog-2, .blog-3, .blog-4, .blog-5 {
+.blogs{
     margin-top: 40px;
     padding-bottom: 47px;
     border-bottom: 1px solid #e2e6e7;
@@ -109,11 +110,7 @@
         justify-content: space-between;
         margin-top: 47px;
         .share-block {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
             &-text {
-                margin-right: 50px;
                 line-height: 28px;
                 color: #222222;
                 text-transform: uppercase;
@@ -289,7 +286,20 @@ audio {
     }
 }
 
+.icon-play-circled-green {
+    color: #16d428;
+    transform: rotate(180deg);
+}
+
+.icon-play-circled-orange {
+    color: #ffac55;
+}
+
 //////////////////////////////////
+.wrapper-share {
+    display: flex;
+    cursor: pointer;
+}
 
 .actions {
     position: relative;
@@ -298,10 +308,23 @@ audio {
 
 .share-block-text {
     display: flex;
+    border-left: 1px solid #dbdbdb;
     align-items: center;
+    align-self: center;
+    max-height: 20px;
+    padding-left: 20px;
+    transition: .5s;
+    margin-right: 50px;
+}
+
+.share-block-text-active {
+    margin-right: 130px;
 }
 
 .share-block-date {
+    transition: .5s;
+    max-width: 140px;
+    width: 100%;
     display: flex;
     align-items: center;
     position: absolute;
@@ -310,7 +333,6 @@ audio {
     padding-right: 25px;
     right: 125px;
     margin: auto 0;
-    border-right: 1px solid #dbdbdb;
     max-height: 20px;
     line-height: 28px;
     color: #222222;
@@ -318,8 +340,8 @@ audio {
     @include font-props ($main-family, 13px, 800);
 }
 
-[type="checkbox"] {
-    visibility: hidden;
+.share-block-date-active {
+    right: 210px;
 }
 
 .share-block {
@@ -330,66 +352,47 @@ audio {
     height: 44px;
     display: flex;
     justify-content: center;
-    cursor: pointer;
     align-items: center;
     transition: .5s all;
+    cursor: pointer;
+}
+
+.share-block-active {
+    background-color: orange;
 }
 
 .links {
     position: absolute;
     right: 0;
-    background-color: #ffffff;
-    // border: 1.0px solid #d2dbdd;
-    border-radius: 25px;
     display: flex;
     flex-direction: row-reverse;
     transition: .5s;
+    z-index: 20;
+    
 }
 
-.text {
+.icons-block {
     display: none;
-}
-
-#check-id:checked ~ .links, #check-id-2:checked ~ .links,
-#check-id-3:checked ~ .links, #check-id-4:checked ~ .links,
-#check-id-5:checked ~ .links {
-    width: 158px;
+    display: flex;
+    align-items: center;
+    max-width: 158px;
+    width: 100%;
+    padding-left: 12px;
+    margin-right: -158px;
+    z-index: 10;
     transition: .5s;
     border: 1.0px solid #d2dbdd;
-    .share-block {
-        background-color: #ffac55;
-        border: none;
-        color: white;
-    }
-    .text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 60%;
+    background-color: #ffffff;
+    border-radius: 35px;
+    a {
+        padding: 0 5px;
     }
 }
 
-#check-id-3:checked ~ .share-block-date,
-#check-id-4:checked ~ .share-block-date {
-    display: none;
-} 
-
-.blog-3, .blog-4,
-.blog-5 {
-    font-weight: 00;
+.icons-block-active {
+    display: Flex;
+    margin-right: 0;
 }
 
-.icon-play-circled-green {
-    color: #16d428;
-    transform: rotate(180deg);
-}
 
-.icon-play-circled-orange {
-    color: #ffac55;
-}
 
-///////////////////////////////////////
-
-div:target {
-    background-color: red;
-}
