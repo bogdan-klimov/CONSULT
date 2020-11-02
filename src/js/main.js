@@ -105,10 +105,11 @@
 // };
 
 /////////////////////////////////////////////////
+
 const BLOG_WRAPPER = document.getElementById("main-block-blog-wrapper");
-const BLOG_LENGHT = 3;
 
 for (let el in news) {
+
     const blog = document.createElement("div");
     blog.classList.add("blogs");
     BLOG_WRAPPER.append(blog);
@@ -131,6 +132,11 @@ for (let el in news) {
     blogImg.append(heading);
     heading.innerText = news[el].title;
 
+    const blogDesc = document.createElement('div');
+    blogDesc.classList.add("blogs-description");
+    blogDesc.innerText = news[el].desc;
+    blog.append(blogDesc);
+
     const actions = document.createElement("div");
     actions.classList.add("actions");
     blog.append(actions);
@@ -138,7 +144,7 @@ for (let el in news) {
     const btn = document.createElement("a");
     btn.setAttribute("href", "#");
     btn.classList.add("button");
-    btn.innerText = news[el].btn;
+    btn.innerText = 'Read more';
     actions.append(btn);
 
     const links = document.createElement("div");
@@ -152,7 +158,7 @@ for (let el in news) {
 
     const shareDate = document.createElement("span");
     shareDate.classList.add("share-block-date");
-    shareDate.innerText = "13-feb-2016";
+    shareDate.innerText = news[el].date;
     links.append(shareDate);
     
     const shareText = document.createElement("span");

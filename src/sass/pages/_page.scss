@@ -109,6 +109,7 @@
         display: flex;
         justify-content: space-between;
         margin-top: 47px;
+        position: relative;
         .share-block {
             &-text {
                 line-height: 28px;
@@ -301,11 +302,6 @@ audio {
     cursor: pointer;
 }
 
-.actions {
-    position: relative;
-    height: 47px;
-}
-
 .share-block-text {
     display: flex;
     border-left: 1px solid #dbdbdb;
@@ -318,7 +314,7 @@ audio {
 }
 
 .share-block-text-active {
-    margin-right: 130px;
+   display: none;
 }
 
 .share-block-date {
@@ -341,15 +337,15 @@ audio {
 }
 
 .share-block-date-active {
-    right: 210px;
+    display: none;
 }
 
 .share-block {
     border-radius: 50%;
     max-width: 45px;
     border: 1px solid #d2dcde;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -359,6 +355,7 @@ audio {
 
 .share-block-active {
     background-color: orange;
+    border: none;
 }
 
 .links {
@@ -373,12 +370,10 @@ audio {
 
 .icons-block {
     display: none;
-    display: flex;
     align-items: center;
     max-width: 158px;
     width: 100%;
     padding-left: 12px;
-    margin-right: -158px;
     z-index: 10;
     transition: .5s;
     border: 1.0px solid #d2dbdd;
@@ -390,8 +385,7 @@ audio {
 }
 
 .icons-block-active {
-    display: Flex;
-    margin-right: 0;
+    display: flex;
 }
 
 
