@@ -52,19 +52,20 @@
 .main-block {
     overflow: hidden;
     max-width: 848px;
-    .h2-small-text {
-        font-size: 14px;     
-        color: #898e8f; 
-    }
-    .title-blogs {
-        display: flex;
-        flex-direction: column;
-        text-transform: uppercase;
-        letter-spacing: -1px;
-        line-height: 33px;
-        color: #343a3b;
-        @include font-props ($main-family, 34px, 800);
-    }
+}
+
+.h2-small-text {
+    font-size: 14px;     
+    color: #898e8f; 
+}
+.title-blogs {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 33px;
+    color: #343a3b;
+    @include font-props ($main-family, 34px, 800);
 }
 
 .blogs{
@@ -105,27 +106,29 @@
         margin: 45px 0;
         @include font-props ($domine-family, 15px, 400);
     }
-    .actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 47px;
-        position: relative;
-        .share-block {
-            &-text {
-                line-height: 28px;
-                color: #222222;
-                text-transform: uppercase;
-                @include font-props ($main-family, 13px, 800);
-            }
-            &-icon {
-                padding: 14px 10px 11px 11px;
-                border-radius: 50%;
-                max-width: 45px;
-                border: 1px solid #d2dcde;
-                .icon-share:before {
-                    color: #8a8a8a;
-                }
-            }
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 47px;
+    position: relative;
+}
+
+.share-block {
+    &-text {
+        line-height: 28px;
+        color: #222222;
+        text-transform: uppercase;
+        @include font-props ($main-family, 13px, 800);
+    }
+    &-icon {
+        padding: 14px 10px 11px 11px;
+        border-radius: 50%;
+        max-width: 45px;
+        border: 1px solid #d2dcde;
+        .icon-share:before {
+            color: #8a8a8a;
         }
     }
 }
@@ -141,45 +144,47 @@
 .aside-block {
     max-width: 266px;
     width: 100%;
-    .search {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        border: 1px solid #d1dbdd;
-        align-items: center;
-        input {
-            padding: 5px 0 5px 10px;
-            line-height: 28px;
-            color: #b5bdbe;
-            border: 0;
-            outline: none;
-            width: 225px;
-            @include font-props ($domine-family, 15px, 400);
-        }
+}
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #d1dbdd;
+    align-items: center;
+    input {
+        padding: 5px 0 5px 10px;
+        line-height: 28px;
+        color: #b5bdbe;
+        border: 0;
+        outline: none;
+        width: 225px;
+        @include font-props ($domine-family, 15px, 400);
     }
-    .categories {
-        margin-top: 40px;
-        h3 {
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            line-height: 33px;
-            color: #343a3b;
-            @include font-props ($main-family, 18px, 700);
-        }
-        .categories-list {
-            list-style-type: '\BB';
-            font-size: 15px;
-            line-height: 36px;
-            color: #ffac55;
-            font-family: $font-awasome;
-            &-item {
-                margin: 10px 0 10px 8px;
-                &-text {
-                    margin-left: 20px;
-                    line-height: 36px;
-                    color: #838b8c;
-                    @include font-props ($domine-family, 15px, 400);
-                }
+}
+
+.categories {
+    margin-top: 40px;
+    h3 {
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 33px;
+        color: #343a3b;
+        @include font-props ($main-family, 18px, 700);
+    }
+    .categories-list {
+        list-style-type: '\BB';
+        font-size: 15px;
+        line-height: 36px;
+        color: #ffac55;
+        font-family: $font-awasome;
+        &-item {
+            margin: 10px 0 10px 8px;
+            &-text {
+                margin-left: 20px;
+                line-height: 36px;
+                color: #838b8c;
+                @include font-props ($domine-family, 15px, 400);
             }
         }
     }
@@ -200,21 +205,6 @@
                 display: flex;
                 flex-direction: column;
             }
-            .featured-post-description {
-                margin-top: 10px;
-                text-transform: uppercase;
-                letter-spacing: -1px;
-                line-height: 21px;
-                color: #343a3b;
-                @include font-props ($main-family, 14px, 400);
-            }
-            .featured-post-date {
-                text-transform: uppercase;
-                letter-spacing: -1px;
-                line-height: 21px;
-                color: #ffc180;
-                @include font-props ($main-family, 14px, 400);
-            }
             span {
                 padding: 4px 0;
             }
@@ -223,6 +213,22 @@
             margin-top: 30px;
         }
     }
+}
+
+.featured-post-description {
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 21px;
+    color: #343a3b;
+    @include font-props ($main-family, 14px, 400);
+}
+.featured-post-date {
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 21px;
+    color: #ffc180;
+    @include font-props ($main-family, 14px, 400);
 }
 
 audio {
@@ -262,29 +268,30 @@ audio {
     margin-top: 40px;
     display: flex;
     max-width: 194px;
-    .arrow-link {
-        display: flex;
-        align-items: center;
-    }
-    .next-block {
-        padding-right: 17px;
-        border-right: 1px solid #e2e6e7;
-    }
-    .previous-block {
-        padding-left: 17px;
-    } 
-    .arrows-block-left, .arrows-block-right {
-        line-height: 28px;
-        color: #222222;
-        text-transform: uppercase;
-        @include font-props ($main-family, 14px, 400);
-    }
-    .arrows-block-left {
-        margin-left: 10px;
-    }
-    .arrows-block-right {
-        margin-right: 10px;
-    }
+}
+
+.arrow-link {
+    display: flex;
+    align-items: center;
+}
+.next-block {
+    padding-right: 17px;
+    border-right: 1px solid #e2e6e7;
+}
+.previous-block {
+    padding-left: 17px;
+} 
+.arrows-block-left, .arrows-block-right {
+    line-height: 28px;
+    color: #222222;
+    text-transform: uppercase;
+    @include font-props ($main-family, 14px, 400);
+}
+.arrows-block-left {
+    margin-left: 10px;
+}
+.arrows-block-right {
+    margin-right: 10px;
 }
 
 .icon-play-circled-green {
