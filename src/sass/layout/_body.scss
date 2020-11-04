@@ -1,5 +1,6 @@
 @import 'utils/variables';
 @import 'utils/mixins';
+
 .banner {
     position: relative;
     padding-top: 180px;
@@ -13,8 +14,9 @@
         top: 0;
         left: 0;
         background: {    
-        size: cover;
-        position: top;
+            size: cover;
+            position: top;
+        };
     };
 }
 
@@ -448,4 +450,4 @@
     100% {
         transform: rotate(360deg);
     }
-}    
+}

@@ -16,9 +16,23 @@ gulp.task('styles', () => {
       .pipe(browserSync.stream());                                        
 });
 
-gulp.task('scripts', () => {
-  return gulp.src('./src/js/**/*.js')
-      .pipe(concat('main.js'))
+gulp.task('scripts_index', () => {
+  return gulp.src('./src/js/**/index.js')
+    .pipe(concat('index.js'))
+    .pipe(gulp.dest('./assets/js/'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('scripts_data', () => {
+  return gulp.src('./src/js/**/data.js')
+      .pipe(concat('data.js'))
+      .pipe(gulp.dest('./assets/js/'))
+      .pipe(browserSync.stream());
+});
+
+gulp.task('scripts_page', () => {
+  return gulp.src('./src/js/**/page.js')
+      .pipe(concat('page.js'))
       .pipe(gulp.dest('./assets/js/'))
       .pipe(browserSync.stream());
 });
@@ -50,10 +64,14 @@ gulp.task('watch', () => {
 
   gulp.watch('./src/img/**', gulp.series('img-compress'));
   gulp.watch('./src/sass/**/*.scss', gulp.series('styles'));        // в каких файлах будут отслеживаться изменения
-  gulp.watch('./src/js/**/*.js', gulp.series('scripts'));
+  gulp.watch('./src/js/**/*.js', gulp.series('scripts_index'));
+  gulp.watch('./src/js/**/*.js', gulp.series('scripts_data'));
+  gulp.watch('./src/js/**/*.js', gulp.series('scripts_page'));
   gulp.watch('./src/font/**', gulp.series('fonts'));
   gulp.watch('./*.html').on('change', browserSync.reload);
 
 });
 
-gulp.task('default', gulp.series('del', gulp.parallel('styles', 'scripts', 'img-compress', 'fonts'), 'watch'));
+gulp.task('default', gulp.series('del', 
+  gulp.parallel('styles', 'scripts_index', 'scripts_data', 'scripts_page', 'img-compress', 'fonts'), 
+'watch'));
