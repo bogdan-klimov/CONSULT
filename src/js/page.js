@@ -1,7 +1,5 @@
 const BLOG_WRAPPER = document.getElementById("main-block-blog-wrapper");
 
-console.log(news);
-
 const madeBlock = (
   nameEl,
   parEl,
@@ -38,6 +36,20 @@ const navigateElements = (blog, date) => {
   madeBlock(linksIcon2, iconsBlock, "icon-twitter", "", "href", "#");
   madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
 };
+
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+let start = 0;
+let end = 5;
+
+let newsBlock = news.slice(start, end);
+
+nextBtn.addEventListener("click", () => {
+  start = start + 5;
+  end = end + 5;
+  newsBlock = news.slice(start, end);
+});
 
 for (let el in news) {
   if (news[el].type === "audio") {
@@ -102,3 +114,8 @@ for (let i = 0; i < blogsLength; i++) {
     shareBlockText[i].classList.toggle("share-block-text-active");
   });
 }
+
+///////////////////////////////////////////////////////////
+
+// const 
+
