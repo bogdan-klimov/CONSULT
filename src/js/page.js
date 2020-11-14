@@ -37,67 +37,100 @@ const navigateElements = (blog, date) => {
   madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
 };
 
+const createNew = (data) => {
+  for (let el in data) {
+    if (data[el].type === "audio") {
+      const blog = document.createElement("div");
+      const audio = document.createElement("audio");
+      const audioSource = document.createElement("source");
+      const blogDesc = document.createElement("div");
+      madeBlock(blog, BLOG_WRAPPER, "blogs");
+      madeBlock(audio, blog, "", "", "controls", "#");
+      madeBlock(audioSource, audio, "", "", "src", "#");
+      madeBlock(blogDesc, blog, "blogs-description", data[el].desc);
+      navigateElements(blog, data[el].date);
+    }
+
+    if (data[el].type === "new") {
+      const blog = document.createElement("div");
+      const blogImg = document.createElement("div");
+      const img = document.createElement("img");
+      const dateImg = document.createElement("div");
+      const heading = document.createElement("div");
+      const blogDesc = document.createElement("div");
+      madeBlock(blog, BLOG_WRAPPER, "blogs");
+      madeBlock(blogImg, blog, "blogs-img");
+      madeBlock(img, blogImg, "#", "", "src", data[el].img);
+      madeBlock(dateImg, blogImg, "blogs-img-date", data[el].date);
+      madeBlock(heading, blogImg, "blogs-img-heading", data[el].title);
+      madeBlock(blogDesc, blog, "blogs-description", data[el].desc);
+      navigateElements(blog, data[el].date);
+    }
+
+    if (data[el].type === "quote") {
+      const blog = document.createElement("div");
+      const blockQuote = document.createElement("div");
+      const blueBlockWrapper = document.createElement("div");
+      const blueBlockWrapperText = document.createElement("p");
+      madeBlock(blog, BLOG_WRAPPER, "blogs");
+      madeBlock(blockQuote, blog, "blue-block");
+      madeBlock(blueBlockWrapper, blockQuote, "blue-block-wrapper");
+      madeBlock(
+        blueBlockWrapperText,
+        blueBlockWrapper,
+        "blue-block-wrapper-text",
+        data[el].desc
+      );
+
+      navigateElements(blog, data[el].date);
+    }
+  }
+};
+
+const createTempArray = (news, elementsOnPage, start) => {
+  return news.slice(
+    elementsOnPage * start,
+    elementsOnPage * start + elementsOnPage
+  );
+};
+
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 
 let start = 0;
-let end = 5;
+let elementsOnPage = 3;
 
-let newsBlock = news.slice(start, end);
+const paginNums = Math.ceil(news.length / elementsOnPage);
 
-nextBtn.addEventListener("click", () => {
-  start = start + 5;
-  end = end + 5;
-  newsBlock = news.slice(start, end);
-});
+let tempArray = createTempArray(news, elementsOnPage, start);
 
-for (let el in news) {
-  if (news[el].type === "audio") {
-    const blog = document.createElement("div");
-    const audio = document.createElement("audio");
-    const audioSource = document.createElement("source");
-    const blogDesc = document.createElement("div");
-    madeBlock(blog, BLOG_WRAPPER, "blogs");
-    madeBlock(audio, blog, "", "", "controls", "#");
-    madeBlock(audioSource, audio, "", "", "src", "#");
-    madeBlock(blogDesc, blog, "blogs-description", news[el].desc);
-    navigateElements(blog, news[el].date);
+createNew(tempArray);
+
+const nextPage = () => {
+  if (start > paginNums - 2) {
+    start = -1;
   }
+  start++;
+  tempArray = createTempArray(news, elementsOnPage, start);
+  BLOG_WRAPPER.innerText = "";
+  createNew(tempArray);
+  console.log(start);
+};
 
-  if (news[el].type === "new") {
-    const blog = document.createElement("div");
-    const blogImg = document.createElement("div");
-    const img = document.createElement("img");
-    const dateImg = document.createElement("div");
-    const heading = document.createElement("div");
-    const blogDesc = document.createElement("div");
-    madeBlock(blog, BLOG_WRAPPER, "blogs");
-    madeBlock(blogImg, blog, "blogs-img");
-    madeBlock(img, blogImg, "#", "", "src", news[el].img);
-    madeBlock(dateImg, blogImg, "blogs-img-date", news[el].date);
-    madeBlock(heading, blogImg, "blogs-img-heading", news[el].title);
-    madeBlock(blogDesc, blog, "blogs-description", news[el].desc);
-    navigateElements(blog, news[el].date);
+const prevPage = () => {
+  if (start < 1) {
+    start = paginNums;
   }
+  start--;
+  tempArray = createTempArray(news, elementsOnPage, start);
+  BLOG_WRAPPER.innerText = "";
+  createNew(tempArray);
+  console.log(start);
+};
 
-  if (news[el].type === "quote") {
-    const blog = document.createElement("div");
-    const blockQuote = document.createElement("div");
-    const blueBlockWrapper = document.createElement("div");
-    const blueBlockWrapperText = document.createElement("p");
-    madeBlock(blog, BLOG_WRAPPER, "blogs");
-    madeBlock(blockQuote, blog, "blue-block");
-    madeBlock(blueBlockWrapper, blockQuote, "blue-block-wrapper");
-    madeBlock(
-      blueBlockWrapperText,
-      blueBlockWrapper,
-      "blue-block-wrapper-text",
-      news[el].desc
-    );
+nextBtn.addEventListener("click", nextPage);
+prevBtn.addEventListener("click", prevPage);
 
-    navigateElements(blog, news[el].date);
-  }
-}
 ///////////////////////////////////////////////////////////
 
 const shareBlock = document.getElementsByClassName("share-block");
@@ -116,6 +149,3 @@ for (let i = 0; i < blogsLength; i++) {
 }
 
 ///////////////////////////////////////////////////////////
-
-// const 
-
