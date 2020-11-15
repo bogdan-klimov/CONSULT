@@ -276,8 +276,23 @@ audio {
 }
 .next-block {
     padding-right: 17px;
-    border-right: 1px solid #e2e6e7;
 }
+
+.pagin-num {
+    display: flex;
+    min-width: 30px;
+    justify-content: center;
+    &-text {
+        display: block;
+        line-height: 28px;
+        color: #222222;
+        text-transform: uppercase;
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+    }
+}
+
 .previous-block {
     padding-left: 17px;
 } 

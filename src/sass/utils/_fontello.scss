@@ -52,12 +52,16 @@
   }
 }
 
+.icon-right-open:before, .icon-left-open:before {
+  display: flex;
+  color: #ffffff;
+} 
+
+
 .icon-right-open:before { 
   content: '\e804'; 
-  color: #ffffff;
 }
 
 .icon-left-open:before { 
   content: '\e805'; 
-  color: #ffffff;
 }

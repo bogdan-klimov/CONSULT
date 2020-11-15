@@ -86,6 +86,7 @@ const createNew = (data) => {
     }
   }
 };
+/////////////////////////////////////////////////////////
 
 const createTempArray = (news, elementsOnPage, start) => {
   return news.slice(
@@ -96,6 +97,8 @@ const createTempArray = (news, elementsOnPage, start) => {
 
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
+const paginNumber = document.getElementById("pagin-num-text");
+
 
 let start = 0;
 let elementsOnPage = 3;
@@ -106,6 +109,8 @@ let tempArray = createTempArray(news, elementsOnPage, start);
 
 createNew(tempArray);
 
+paginNumber.innerText = 1;
+
 const nextPage = () => {
   if (start > paginNums - 2) {
     start = -1;
@@ -114,7 +119,7 @@ const nextPage = () => {
   tempArray = createTempArray(news, elementsOnPage, start);
   BLOG_WRAPPER.innerText = "";
   createNew(tempArray);
-  console.log(start);
+  paginNumber.innerText = start + 1;
 };
 
 const prevPage = () => {
@@ -126,6 +131,7 @@ const prevPage = () => {
   BLOG_WRAPPER.innerText = "";
   createNew(tempArray);
   console.log(start);
+  paginNumber.innerText = start + 1;
 };
 
 nextBtn.addEventListener("click", nextPage);
