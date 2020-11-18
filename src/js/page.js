@@ -95,31 +95,54 @@ const createTempArray = (news, elementsOnPage, start) => {
   );
 };
 
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const paginNumber = document.getElementById("pagin-num-text");
-
-
-let start = 0;
-let elementsOnPage = 3;
+const elementsOnPage = 5;
 
 const paginNums = Math.ceil(news.length / elementsOnPage);
+let start = 0;
+const paginNumber = document.getElementById("pagin-num-text");
 
+for (let i = 0; i < paginNums; i++) {
+  const li = document.createElement("li");
+  li.classList.add("pagin-num-item");
+  li.innerText = i + 1;
+  paginNumber.append(li);
+}
+
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
 let tempArray = createTempArray(news, elementsOnPage, start);
 
 createNew(tempArray);
 
-paginNumber.innerText = 1;
+const paginEl = document.getElementsByClassName("pagin-num-item");
+paginEl[start].classList.add("pagin-num-active");
+
+const handleSetActive = (idx) => {
+  for (let j = 0; j < paginEl.length; j++) {
+    paginEl[j].classList.remove("pagin-num-active");
+    paginEl[idx].classList.add("pagin-num-active");
+  }
+};
+
+Array.from(paginEl).forEach((num, idx) => {
+  num.addEventListener("click", () => {
+    start = num.innerText - 1;
+    handleSetActive(start);
+    tempArray = createTempArray(news, elementsOnPage, start);
+    BLOG_WRAPPER.innerText = "";
+    createNew(tempArray);
+  });
+});
 
 const nextPage = () => {
   if (start > paginNums - 2) {
     start = -1;
   }
   start++;
+  handleSetActive(start);
   tempArray = createTempArray(news, elementsOnPage, start);
   BLOG_WRAPPER.innerText = "";
   createNew(tempArray);
-  paginNumber.innerText = start + 1;
 };
 
 const prevPage = () => {
@@ -127,11 +150,10 @@ const prevPage = () => {
     start = paginNums;
   }
   start--;
+  handleSetActive(start);
   tempArray = createTempArray(news, elementsOnPage, start);
   BLOG_WRAPPER.innerText = "";
   createNew(tempArray);
-  console.log(start);
-  paginNumber.innerText = start + 1;
 };
 
 nextBtn.addEventListener("click", nextPage);
