@@ -1,43 +1,43 @@
 const BLOG_WRAPPER = document.getElementById("main-block-blog-wrapper");
 
-const madeBlock = (
-  nameEl,
-  parEl,
-  className,
-  innerTextEl = null,
-  atributeName = null,
-  atributeItem = null
-) => {
-  nameEl.className = className;
-  parEl.append(nameEl);
-  nameEl.innerText = innerTextEl;
-  nameEl.setAttribute(atributeName, atributeItem);
-};
+const createTempPage = (data) => {
+  const madeBlock = (
+    nameEl,
+    parEl,
+    className,
+    innerTextEl = null,
+    atributeName = null,
+    atributeItem = null
+  ) => {
+    nameEl.className = className;
+    parEl.append(nameEl);
+    nameEl.innerText = innerTextEl;
+    nameEl.setAttribute(atributeName, atributeItem);
+  };
 
-const navigateElements = (blog, date) => {
-  const actions = document.createElement("div");
-  const btn = document.createElement("a");
-  const links = document.createElement("div");
-  const shareBlock = document.createElement("div");
-  const shareDate = document.createElement("span");
-  const shareText = document.createElement("span");
-  const iconsBlock = document.createElement("div");
-  const linksIcon = document.createElement("a");
-  const linksIcon2 = document.createElement("a");
-  const linksIcon3 = document.createElement("a");
-  madeBlock(actions, blog, "actions");
-  madeBlock(btn, actions, "button", "Read more", "href", "#");
-  madeBlock(links, actions, "links");
-  madeBlock(shareBlock, links, "share-block icon-share");
-  madeBlock(shareDate, links, "share-block-date", date);
-  madeBlock(shareText, links, "share-block-text", "Share:");
-  madeBlock(iconsBlock, actions, "icons-block");
-  madeBlock(linksIcon, iconsBlock, "icon-facebook", "", "href", "#");
-  madeBlock(linksIcon2, iconsBlock, "icon-twitter", "", "href", "#");
-  madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
-};
+  const navigateElements = (blog, date) => {
+    const actions = document.createElement("div");
+    const btn = document.createElement("a");
+    const links = document.createElement("div");
+    const shareBlock = document.createElement("div");
+    const shareDate = document.createElement("span");
+    const shareText = document.createElement("span");
+    const iconsBlock = document.createElement("div");
+    const linksIcon = document.createElement("a");
+    const linksIcon2 = document.createElement("a");
+    const linksIcon3 = document.createElement("a");
+    madeBlock(actions, blog, "actions");
+    madeBlock(btn, actions, "button", "Read more", "href", "#");
+    madeBlock(links, actions, "links");
+    madeBlock(shareBlock, links, "share-block icon-share");
+    madeBlock(shareDate, links, "share-block-date", date);
+    madeBlock(shareText, links, "share-block-text", "Share:");
+    madeBlock(iconsBlock, actions, "icons-block");
+    madeBlock(linksIcon, iconsBlock, "icon-facebook", "", "href", "#");
+    madeBlock(linksIcon2, iconsBlock, "icon-twitter", "", "href", "#");
+    madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
+  };
 
-const createNew = (data) => {
   for (let el in data) {
     if (data[el].type === "audio") {
       const blog = document.createElement("div");
@@ -87,7 +87,6 @@ const createNew = (data) => {
   }
 };
 
-////////////////////////////////////////////////////////
 const createTempArray = (news, elementsOnPage, start) => {
   return news.slice(
     elementsOnPage * start,
@@ -95,11 +94,55 @@ const createTempArray = (news, elementsOnPage, start) => {
   );
 };
 
-const elementsOnPage = 3;
+const createShareBlock = () => {
+  const shareBlock = document.getElementsByClassName("share-block");
+  const iconsBlock = document.getElementsByClassName("icons-block");
+  const shareBlockText = document.getElementsByClassName("share-block-text");
+  const shareBlockDate = document.getElementsByClassName("share-block-date");
+  const blogsLength = document.getElementsByClassName("blogs").length;
 
+  for (let i = 0; i < blogsLength; i++) {
+    shareBlock[i].addEventListener("click", () => {
+      shareBlock[i].classList.toggle("share-block-active");
+      iconsBlock[i].classList.toggle("icons-block-active");
+      shareBlockDate[i].classList.toggle("share-block-date-active");
+      shareBlockText[i].classList.toggle("share-block-text-active");
+    });
+  }
+};
+
+const createAllData = (
+  start,
+  paginEl,
+  news,
+  elementsOnPage,
+  BLOG_WRAPPER,
+  tempArray
+) => {
+  const handleSetActive = (start, paginEl) => {
+    for (let j = 0; j < paginEl.length; j++) {
+      paginEl[j].classList.remove("pagin-num-active");
+      paginEl[start].classList.add("pagin-num-active");
+    }
+  };
+
+  handleSetActive(start, paginEl);
+  tempArray = createTempArray(news, elementsOnPage, start);
+  BLOG_WRAPPER.innerText = "";
+  createTempPage(tempArray);
+  /// !!! createTempPage(news); => offsetHeight => null
+  // добавить логику определения максимальной высоты блога
+  createShareBlock();
+};
+
+const elementsOnPage = 3;
 const paginNums = Math.ceil(news.length / elementsOnPage);
-let start = 0;
 const paginNumber = document.getElementById("pagin-num-text");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const paginEl = document.getElementsByClassName("pagin-num-item");
+let tempArray;
+let start = 0;
 
 for (let i = 0; i < paginNums; i++) {
   const li = document.createElement("li");
@@ -108,29 +151,19 @@ for (let i = 0; i < paginNums; i++) {
   paginNumber.append(li);
 }
 
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-let tempArray = createTempArray(news, elementsOnPage, start);
+createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
 
-createNew(tempArray);
-
-const paginEl = document.getElementsByClassName("pagin-num-item");
-paginEl[start].classList.add("pagin-num-active");
-
-const handleSetActive = (idx) => {
-  for (let j = 0; j < paginEl.length; j++) {
-    paginEl[j].classList.remove("pagin-num-active");
-    paginEl[idx].classList.add("pagin-num-active");
-  }
-};
-
-Array.from(paginEl).forEach((num, idx) => {
+Array.from(paginEl).forEach((num) => {
   num.addEventListener("click", () => {
     start = num.innerText - 1;
-    handleSetActive(start);
-    tempArray = createTempArray(news, elementsOnPage, start);
-    BLOG_WRAPPER.innerText = "";
-    createNew(tempArray);
+    createAllData(
+      start,
+      paginEl,
+      news,
+      elementsOnPage,
+      BLOG_WRAPPER,
+      tempArray
+    );
   });
 });
 
@@ -139,10 +172,7 @@ const nextPage = () => {
     start = -1;
   }
   start++;
-  handleSetActive(start);
-  tempArray = createTempArray(news, elementsOnPage, start);
-  BLOG_WRAPPER.innerText = "";
-  createNew(tempArray);
+  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
 };
 
 const prevPage = () => {
@@ -150,36 +180,21 @@ const prevPage = () => {
     start = paginNums;
   }
   start--;
-  handleSetActive(start);
-  tempArray = createTempArray(news, elementsOnPage, start);
-  BLOG_WRAPPER.innerText = "";
-  createNew(tempArray);
+  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
 };
 
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 
 ///////////////////////////////////////////////////////////
+
 const blogs = document.getElementsByClassName("blogs");
-const blogHeight = blogs[0].offsetHeight;
-const pageHeight = blogHeight * elementsOnPage; 
+
+let arr = [];
+for (let i = 0; i < blogs.length; i++) {
+  arr.push(blogs[i].offsetHeight);
+}
+const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
 const MARGIN_BLOG_ADN_ARROW = 100;
 
 BLOG_WRAPPER.style.height = pageHeight + MARGIN_BLOG_ADN_ARROW + "px";
-/////////////////////////////////////////////////////////
-
-const shareBlock = document.getElementsByClassName("share-block");
-const iconsBlock = document.getElementsByClassName("icons-block");
-const shareBlockText = document.getElementsByClassName("share-block-text");
-const shareBlockDate = document.getElementsByClassName("share-block-date");
-const blogsLength = document.getElementsByClassName("blogs").length;
-
-for (let i = 0; i < blogsLength; i++) {
-  shareBlock[i].addEventListener("click", () => {
-    shareBlock[i].classList.toggle("share-block-active");
-    iconsBlock[i].classList.toggle("icons-block-active");
-    shareBlockDate[i].classList.toggle("share-block-date-active");
-    shareBlockText[i].classList.toggle("share-block-text-active");
-  });
-}
-
