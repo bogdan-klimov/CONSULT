@@ -86,8 +86,8 @@ const createNew = (data) => {
     }
   }
 };
-/////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////
 const createTempArray = (news, elementsOnPage, start) => {
   return news.slice(
     elementsOnPage * start,
@@ -95,7 +95,7 @@ const createTempArray = (news, elementsOnPage, start) => {
   );
 };
 
-const elementsOnPage = 5;
+const elementsOnPage = 3;
 
 const paginNums = Math.ceil(news.length / elementsOnPage);
 let start = 0;
@@ -160,6 +160,13 @@ nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 
 ///////////////////////////////////////////////////////////
+const blogs = document.getElementsByClassName("blogs");
+const blogHeight = blogs[0].offsetHeight;
+const pageHeight = blogHeight * elementsOnPage; 
+const MARGIN_BLOG_ADN_ARROW = 100;
+
+BLOG_WRAPPER.style.height = pageHeight + MARGIN_BLOG_ADN_ARROW + "px";
+/////////////////////////////////////////////////////////
 
 const shareBlock = document.getElementsByClassName("share-block");
 const iconsBlock = document.getElementsByClassName("icons-block");
@@ -176,4 +183,3 @@ for (let i = 0; i < blogsLength; i++) {
   });
 }
 
-///////////////////////////////////////////////////////////
