@@ -52,6 +52,9 @@
 .main-block {
     overflow: hidden;
     max-width: 848px;
+    &-blog-wrapper {
+        margin: 2rem 0;
+    }
 }
 
 .h2-small-text {

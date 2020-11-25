@@ -99,26 +99,22 @@ const createShareBlock = () => {
   const iconsBlock = document.getElementsByClassName("icons-block");
   const shareBlockText = document.getElementsByClassName("share-block-text");
   const shareBlockDate = document.getElementsByClassName("share-block-date");
-  const blogsLength = document.getElementsByClassName("blogs").length;
 
-  for (let i = 0; i < blogsLength; i++) {
+  const blogs = document.getElementsByClassName("blogs");
+
+  Array.from(blogs).forEach((i) => {
+    // find a mistake there! make it only with forEach
+
     shareBlock[i].addEventListener("click", () => {
       shareBlock[i].classList.toggle("share-block-active");
       iconsBlock[i].classList.toggle("icons-block-active");
       shareBlockDate[i].classList.toggle("share-block-date-active");
       shareBlockText[i].classList.toggle("share-block-text-active");
     });
-  }
+  });
 };
 
-const createAllData = (
-  start,
-  paginEl,
-  news,
-  elementsOnPage,
-  BLOG_WRAPPER,
-  tempArray
-) => {
+const createAllData = (start, paginEl, news, elementsOnPage, BLOG_WRAPPER) => {
   const handleSetActive = (start, paginEl) => {
     for (let j = 0; j < paginEl.length; j++) {
       paginEl[j].classList.remove("pagin-num-active");
@@ -127,16 +123,21 @@ const createAllData = (
   };
 
   handleSetActive(start, paginEl);
-  tempArray = createTempArray(news, elementsOnPage, start);
   BLOG_WRAPPER.innerText = "";
-
-  
-  createTempPage(tempArray);
-
-
-  /// !!! createTempPage(news); => offsetHeight => null
-  // добавить логику определения максимальной высоты блога
+  createTempPage(createTempArray(news, elementsOnPage, start));
   createShareBlock();
+};
+
+const getMaxBlogHeight = (news, elementsOnPage) => {
+  createTempPage(news);
+  const blogs = document.getElementsByClassName("blogs");
+  let arr = [];
+  for (let i = 0; i < blogs.length; i++) {
+    arr.push(blogs[i].offsetHeight);
+  }
+  const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
+  BLOG_WRAPPER.innerText = "";
+  return pageHeight;
 };
 
 const elementsOnPage = 3;
@@ -148,26 +149,25 @@ const paginEl = document.getElementsByClassName("pagin-num-item");
 let tempArray;
 let start = 0;
 
-for (let i = 0; i < paginNums; i++) {
+const pageHeight = getMaxBlogHeight(news, elementsOnPage);
+createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
+
+const createNumList = () => {};
+
+// finish this function
+
+new Array(paginNums).fill(null).forEach((_, i) => {
   const li = document.createElement("li");
   li.classList.add("pagin-num-item");
   li.innerText = i + 1;
   paginNumber.append(li);
-}
-
-createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
+});
 
 Array.from(paginEl).forEach((num) => {
   num.addEventListener("click", () => {
     start = num.innerText - 1;
-    createAllData(
-      start,
-      paginEl,
-      news,
-      elementsOnPage,
-      BLOG_WRAPPER,
-      tempArray
-    );
+    createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
   });
 });
 
@@ -176,7 +176,7 @@ const nextPage = () => {
     start = -1;
   }
   start++;
-  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
+  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 };
 
 const prevPage = () => {
@@ -184,21 +184,10 @@ const prevPage = () => {
     start = paginNums;
   }
   start--;
-  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER, tempArray);
+  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 };
 
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 
 ///////////////////////////////////////////////////////////
-
-const blogs = document.getElementsByClassName("blogs");
-
-let arr = [];
-for (let i = 0; i < blogs.length; i++) {
-  arr.push(blogs[i].offsetHeight);
-}
-const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
-const MARGIN_BLOG_ADN_ARROW = 100;
-
-BLOG_WRAPPER.style.height = pageHeight + MARGIN_BLOG_ADN_ARROW + "px";
