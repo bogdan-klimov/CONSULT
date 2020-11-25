@@ -129,7 +129,11 @@ const createAllData = (
   handleSetActive(start, paginEl);
   tempArray = createTempArray(news, elementsOnPage, start);
   BLOG_WRAPPER.innerText = "";
+
+  
   createTempPage(tempArray);
+
+
   /// !!! createTempPage(news); => offsetHeight => null
   // добавить логику определения максимальной высоты блога
   createShareBlock();
