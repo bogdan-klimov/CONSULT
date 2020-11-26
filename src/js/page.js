@@ -102,19 +102,18 @@ const createShareBlock = () => {
 
   const blogs = document.getElementsByClassName("blogs");
 
-  Array.from(blogs).forEach((i) => {
-    // find a mistake there! make it only with forEach
-
-    shareBlock[i].addEventListener("click", () => {
-      shareBlock[i].classList.toggle("share-block-active");
-      iconsBlock[i].classList.toggle("icons-block-active");
-      shareBlockDate[i].classList.toggle("share-block-date-active");
-      shareBlockText[i].classList.toggle("share-block-text-active");
+  Array.from(blogs).forEach((_, idx) => {
+    shareBlock[idx].addEventListener("click", () => {
+      shareBlock[idx].classList.toggle("share-block-active");
+      iconsBlock[idx].classList.toggle("icons-block-active");
+      shareBlockDate[idx].classList.toggle("share-block-date-active");
+      shareBlockText[idx].classList.toggle("share-block-text-active");
     });
   });
 };
 
 const createAllData = (start, paginEl, news, elementsOnPage, BLOG_WRAPPER) => {
+
   const handleSetActive = (start, paginEl) => {
     for (let j = 0; j < paginEl.length; j++) {
       paginEl[j].classList.remove("pagin-num-active");
@@ -140,6 +139,22 @@ const getMaxBlogHeight = (news, elementsOnPage) => {
   return pageHeight;
 };
 
+const createNumList = (paginNums, paginNumber, paginEl, start) => {
+  new Array(paginNums).fill(null).forEach((_, i) => {
+    const li = document.createElement("li");
+    li.classList.add("pagin-num-item");
+    li.innerText = i + 1;
+    paginNumber.append(li);
+  });
+  
+  Array.from(paginEl).forEach((num) => {
+    num.addEventListener("click", () => {
+      start = num.innerText - 1;
+      createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+    });
+  });
+}
+
 const elementsOnPage = 3;
 const paginNums = Math.ceil(news.length / elementsOnPage);
 const paginNumber = document.getElementById("pagin-num-text");
@@ -153,23 +168,7 @@ const pageHeight = getMaxBlogHeight(news, elementsOnPage);
 createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
 
-const createNumList = () => {};
-
-// finish this function
-
-new Array(paginNums).fill(null).forEach((_, i) => {
-  const li = document.createElement("li");
-  li.classList.add("pagin-num-item");
-  li.innerText = i + 1;
-  paginNumber.append(li);
-});
-
-Array.from(paginEl).forEach((num) => {
-  num.addEventListener("click", () => {
-    start = num.innerText - 1;
-    createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
-  });
-});
+createNumList(paginNums, paginNumber, paginEl, start)
 
 const nextPage = () => {
   if (start > paginNums - 2) {
@@ -189,5 +188,4 @@ const prevPage = () => {
 
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
-
-///////////////////////////////////////////////////////////
+paginEl[0].classList.add("pagin-num-active");
