@@ -155,6 +155,34 @@ const createNumList = (paginNums, paginNumber, paginEl, start) => {
   });
 }
 
+const madePostFeature = (randomNum) => {
+  const itemFeature = document.createElement("li");
+  itemFeature.classList.add("feature-post-list-item");
+  featurePostBlock.append(itemFeature);
+
+  const postDesc = document.createElement("a");
+  postDesc.classList.add("featured-post-list-item-description");
+  postDesc.setAttribute("href", news[randomNum].link);
+  itemFeature.append(postDesc);
+
+  const featureImg = document.createElement("img");
+  featureImg.setAttribute("src", news[randomNum].img);
+  featureImg.setAttribute("alt", "featured-post-img-1");
+  featureImg.classList.add("assets/img/featured-post-img-1.png");
+  postDesc.append(featureImg);
+
+  const featurePostDescription = document.createElement("span");
+  featurePostDescription.classList.add("featured-post-description");
+  featurePostDescription.innerText = news[randomNum].title;
+  postDesc.append(featurePostDescription);
+
+  const featurePostDate = document.createElement("span");
+  featurePostDate.classList.add("featured-post-date");
+  featurePostDate.innerText = news[randomNum].date;
+  postDesc.append(featurePostDate);
+};
+
+
 const elementsOnPage = 3;
 const paginNums = Math.ceil(news.length / elementsOnPage);
 const paginNumber = document.getElementById("pagin-num-text");
@@ -193,33 +221,6 @@ paginEl[0].classList.add("pagin-num-active");
 ////////////////////////////////////////////////////////////////////
 const featurePostBlock = document.getElementById("featured-post-list");
 
-const madePost = (randomNum) => {
-  const itemFeature = document.createElement("li");
-  itemFeature.classList.add("feature-post-list-item");
-  featurePostBlock.append(itemFeature);
-
-  const postDesc = document.createElement("a");
-  postDesc.classList.add("featured-post-list-item-description");
-  postDesc.setAttribute("href", news[randomNum].link);
-  itemFeature.append(postDesc);
-
-  const featureImg = document.createElement("img");
-  featureImg.setAttribute("src", news[randomNum].img);
-  featureImg.setAttribute("alt", "featured-post-img-1");
-  featureImg.classList.add("assets/img/featured-post-img-1.png");
-  postDesc.append(featureImg);
-
-  const featurePostDescription = document.createElement("span");
-  featurePostDescription.classList.add("featured-post-description");
-  featurePostDescription.innerText = news[randomNum].title;
-  postDesc.append(featurePostDescription);
-
-  const featurePostDate = document.createElement("span");
-  featurePostDate.classList.add("featured-post-date");
-  featurePostDate.innerText = news[randomNum].date;
-  postDesc.append(featurePostDate);
-};
-
 let newsPosition = [];
 
 for (let el in news) {
@@ -236,9 +237,9 @@ let randomNum1 = newsPosition[randomForNum1];
 let randomNum2 = newsPosition[randomForNum2];
 let randomNum3 = newsPosition[randomForNum3];
 
-madePost(randomNum1);
-madePost(randomNum2);
-madePost(randomNum3);
+madePostFeature(randomNum1);
+madePostFeature(randomNum2);
+madePostFeature(randomNum3);
 
 
 
