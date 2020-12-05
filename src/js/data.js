@@ -84,6 +84,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img.png",
+    src: "#",
+    position: 0,
+    link: "#",
   },
   {
     type: "new",
@@ -92,6 +95,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img-2.png",
+    src: "#",
+    position: 1,
+    link: "#",
   },
   {
     type: "new",
@@ -100,6 +106,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img-2.png",
+    src: "#",
+    position: 2,
+    link: "#",
   },
   {
     type: "audio",
@@ -108,6 +117,7 @@ const news = [
     btn: "Watch more",
     desc:
       "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+    position: 3,
   },
   {
     type: "new",
@@ -116,6 +126,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img.png",
+    src: "#",
+    position: 4,
+    link: "#",
   },
   {
     type: "quote",
@@ -123,6 +136,7 @@ const news = [
     desc:
       "Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     btn: "Full quotes",
+    position: 5,
   },
   {
     type: "new",
@@ -131,6 +145,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img.png",
+    src: "#",
+    position: 6,
+    link: "#",
   },
   {
     type: "new",
@@ -139,6 +156,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img-2.png",
+    src: "#",
+    position: 7,
+    link: "#",
   },
   {
     type: "audio",
@@ -147,6 +167,7 @@ const news = [
     btn: "Watch more",
     desc:
       "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+    position: 8,
   },
   {
     type: "new",
@@ -155,6 +176,9 @@ const news = [
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     img: "assets/img/blog-img-5.png",
+    src: "#",
+    position: 9,
+    link: "#",
   },
   {
     type: "quote",
@@ -162,5 +186,6 @@ const news = [
     desc:
       "Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     btn: "Full quotes",
+    position: 10,
   },
 ];

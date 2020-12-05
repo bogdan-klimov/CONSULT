@@ -1,5 +1,3 @@
-// import {data} from './data';
-
 const slider = document.getElementById("clients-list-block");
 const visible = document.getElementById("visible");
 const sliderWrapper = document.getElementById("clients-slider");
@@ -56,7 +54,6 @@ const move = visible.offsetWidth;
 
 sliderBtns[0].classList.add("clients-list-carousel-item-active");
 
-
 for (let i = 0; i < sliderBtns.length; i++) {
 
     sliderBtns[i].addEventListener("click", () => {
@@ -77,15 +74,24 @@ for (let i = 0; i < sliderBtns.length; i++) {
 let backgroundsBanner = document.getElementsByClassName("banner-backgrounds");
 let leftBtn = document.getElementById("left-rectangle-arrow");
 let rightBtn = document.getElementById("right-rectangle-arrow");
+let slideId;
+let idx = 0;
+backgroundsBanner[0].classList.add("backgrounds-active");
 
 const replaceClass = (item, classItem, newClassItem) => {
     item.className = item.className.replace(classItem, newClassItem);
 }
 
-backgroundsBanner[0].classList.add("backgrounds-active");
-
-let idx = 0;
-
+const sliderHover = (leftBtn, rightBtn) => {
+    leftBtn.addEventListener("mouseenter", () => {
+        clearInterval(slideId);
+    });
+    rightBtn.addEventListener("mouseenter", () => {
+        clearInterval(slideId);
+    });
+    leftBtn.addEventListener("mouseleave", () => {startSlider()});
+    rightBtn.addEventListener("mouseleave", () => {startSlider()});
+};
 leftBtn.onclick = function () {
     replaceClass(backgroundsBanner[idx], "backgrounds-active", "");
     idx -= 1;
@@ -105,3 +111,19 @@ rightBtn.onclick = function () {
 
 	backgroundsBanner[idx].classList.add('backgrounds-active');
 };
+
+const startSlider = () => {
+    slideId = setInterval(()=> {
+        replaceClass(backgroundsBanner[idx], "backgrounds-active", "");
+        idx += 1;
+        if (idx > backgroundsBanner.length - 1) {
+            idx = 0;
+        }
+    
+        backgroundsBanner[idx].classList.add('backgrounds-active');
+    }, 5000)
+}
+
+sliderHover(leftBtn, rightBtn);
+
+startSlider();

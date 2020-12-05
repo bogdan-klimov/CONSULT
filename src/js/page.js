@@ -15,7 +15,7 @@ const createTempPage = (data) => {
     nameEl.setAttribute(atributeName, atributeItem);
   };
 
-  const navigateElements = (blog, date) => {
+  const navigateElements = (blog, data) => {
     const actions = document.createElement("div");
     const btn = document.createElement("a");
     const links = document.createElement("div");
@@ -30,7 +30,7 @@ const createTempPage = (data) => {
     madeBlock(btn, actions, "button", "Read more", "href", "#");
     madeBlock(links, actions, "links");
     madeBlock(shareBlock, links, "share-block icon-share");
-    madeBlock(shareDate, links, "share-block-date", date);
+    madeBlock(shareDate, links, "share-block-date", data);
     madeBlock(shareText, links, "share-block-text", "Share:");
     madeBlock(iconsBlock, actions, "icons-block");
     madeBlock(linksIcon, iconsBlock, "icon-facebook", "", "href", "#");
@@ -172,7 +172,7 @@ createNumList(paginNums, paginNumber, paginEl, start)
 
 const nextPage = () => {
   if (start > paginNums - 2) {
-    start = -1;
+    start = -1; 
   }
   start++;
   createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
@@ -189,3 +189,62 @@ const prevPage = () => {
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 paginEl[0].classList.add("pagin-num-active");
+
+////////////////////////////////////////////////////////////////////
+const featurePostBlock = document.getElementById("featured-post-list");
+
+const madePost = (randomNum) => {
+  const itemFeature = document.createElement("li");
+  itemFeature.classList.add("feature-post-list-item");
+  featurePostBlock.append(itemFeature);
+
+  const postDesc = document.createElement("a");
+  postDesc.classList.add("featured-post-list-item-description");
+  postDesc.setAttribute("href", news[randomNum].link);
+  itemFeature.append(postDesc);
+
+  const featureImg = document.createElement("img");
+  featureImg.setAttribute("src", news[randomNum].img);
+  featureImg.setAttribute("alt", "featured-post-img-1");
+  featureImg.classList.add("assets/img/featured-post-img-1.png");
+  postDesc.append(featureImg);
+
+  const featurePostDescription = document.createElement("span");
+  featurePostDescription.classList.add("featured-post-description");
+  featurePostDescription.innerText = news[randomNum].title;
+  postDesc.append(featurePostDescription);
+
+  const featurePostDate = document.createElement("span");
+  featurePostDate.classList.add("featured-post-date");
+  featurePostDate.innerText = news[randomNum].date;
+  postDesc.append(featurePostDate);
+};
+
+let newsPosition = [];
+
+for (let el in news) {
+  if (news[el].type === "new") {
+    newsPosition.push(news[el].position);
+  }
+}
+
+let randomForNum1 = Math.round(Math.random() * newsPosition.length);
+let randomForNum2 = Math.round(Math.random() * newsPosition.length);
+let randomForNum3 = Math.round(Math.random() * newsPosition.length);
+
+let randomNum1 = newsPosition[randomForNum1];
+let randomNum2 = newsPosition[randomForNum2];
+let randomNum3 = newsPosition[randomForNum3];
+
+madePost(randomNum1);
+madePost(randomNum2);
+madePost(randomNum3);
+
+
+
+
+
+
+
+
+
