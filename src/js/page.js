@@ -99,9 +99,7 @@ const createShareBlock = () => {
   const iconsBlock = document.getElementsByClassName("icons-block");
   const shareBlockText = document.getElementsByClassName("share-block-text");
   const shareBlockDate = document.getElementsByClassName("share-block-date");
-
   const blogs = document.getElementsByClassName("blogs");
-
   Array.from(blogs).forEach((_, idx) => {
     shareBlock[idx].addEventListener("click", () => {
       shareBlock[idx].classList.toggle("share-block-active");
@@ -113,14 +111,12 @@ const createShareBlock = () => {
 };
 
 const createAllData = (start, paginEl, news, elementsOnPage, BLOG_WRAPPER) => {
-
   const handleSetActive = (start, paginEl) => {
-    for (let j = 0; j < paginEl.length; j++) {
-      paginEl[j].classList.remove("pagin-num-active");
+    Array.from(paginEl).forEach((j) => {
+      paginEl[+j.innerText - 1].classList.remove("pagin-num-active");
       paginEl[start].classList.add("pagin-num-active");
-    }
+    });
   };
-
   handleSetActive(start, paginEl);
   BLOG_WRAPPER.innerText = "";
   createTempPage(createTempArray(news, elementsOnPage, start));
@@ -131,9 +127,9 @@ const getMaxBlogHeight = (news, elementsOnPage) => {
   createTempPage(news);
   const blogs = document.getElementsByClassName("blogs");
   let arr = [];
-  for (let i = 0; i < blogs.length; i++) {
-    arr.push(blogs[i].offsetHeight);
-  }
+  Array.from(blogs).forEach((_, idx) => {
+    arr.push(blogs[idx].offsetHeight);
+  });
   const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
   BLOG_WRAPPER.innerText = "";
   return pageHeight;
@@ -146,14 +142,14 @@ const createNumList = (paginNums, paginNumber, paginEl, start) => {
     li.innerText = i + 1;
     paginNumber.append(li);
   });
-  
+
   Array.from(paginEl).forEach((num) => {
     num.addEventListener("click", () => {
       start = num.innerText - 1;
       createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
     });
   });
-}
+};
 
 const madePostFeature = (randomNum) => {
   const itemFeature = document.createElement("li");
@@ -196,7 +192,7 @@ const pageHeight = getMaxBlogHeight(news, elementsOnPage);
 createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
 
-createNumList(paginNums, paginNumber, paginEl, start)
+createNumList(paginNums, paginNumber, paginEl, start);
 
 const nextPage = () => {
   if (start > paginNums - 2) {
@@ -217,6 +213,7 @@ const prevPage = () => {
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 paginEl[0].classList.add("pagin-num-active");
+<<<<<<< HEAD
 
 ////////////////////////////////////////////////////////////////////
 const featurePostBlock = document.getElementById("featured-post-list");
@@ -249,3 +246,5 @@ madePostFeature(randomNum3);
 
 
 
+=======
+>>>>>>> 598809cdc292731cf04368b0cc25a2e839b7f368
