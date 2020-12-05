@@ -213,7 +213,6 @@ const prevPage = () => {
 nextBtn.addEventListener("click", nextPage);
 prevBtn.addEventListener("click", prevPage);
 paginEl[0].classList.add("pagin-num-active");
-<<<<<<< HEAD
 
 ////////////////////////////////////////////////////////////////////
 const featurePostBlock = document.getElementById("featured-post-list");
@@ -246,5 +245,3 @@ madePostFeature(randomNum3);
 
 
 
-=======
->>>>>>> 598809cdc292731cf04368b0cc25a2e839b7f368
