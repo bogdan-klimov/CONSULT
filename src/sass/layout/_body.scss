@@ -21,11 +21,6 @@
     };
 }
 
-.bgrnd1 {
-    -webkit-animation: kenburns-top 5s ease-out both;
-    animation: kenburns-top 5s ease-out both;
-}
-
 .left-rectangle-arrow, .right-rectangle-arrow {
     background-color: #262829;
     max-width: 46px;
@@ -71,6 +66,8 @@
 
 .backgrounds-active {
     opacity: 1;
+    -webkit-animation: kenburns-top 6s ease-out both;
+    animation: kenburns-top 6s ease-out both;
 }
 
 .industry {

@@ -178,7 +178,6 @@ const madePostFeature = (randomNum) => {
   postDesc.append(featurePostDate);
 };
 
-
 const elementsOnPage = 3;
 const paginNums = Math.ceil(news.length / elementsOnPage);
 const paginNumber = document.getElementById("pagin-num-text");
@@ -196,7 +195,7 @@ createNumList(paginNums, paginNumber, paginEl, start);
 
 const nextPage = () => {
   if (start > paginNums - 2) {
-    start = -1; 
+    start = -1;
   }
   start++;
   createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
@@ -225,23 +224,14 @@ for (let el in news) {
   }
 }
 
-let randomForNum1 = Math.round(Math.random() * newsPosition.length);
-let randomForNum2 = Math.round(Math.random() * newsPosition.length);
-let randomForNum3 = Math.round(Math.random() * newsPosition.length);
+const randomForNum1 = Math.round(Math.random() * (newsPosition.length - 1));
+const randomForNum2 = Math.round(Math.random() * (newsPosition.length - 1));
+const randomForNum3 = Math.round(Math.random() * (newsPosition.length - 1));
 
-let randomNum1 = newsPosition[randomForNum1];
-let randomNum2 = newsPosition[randomForNum2];
-let randomNum3 = newsPosition[randomForNum3];
+const randomNum1 = newsPosition[randomForNum1];
+const randomNum2 = newsPosition[randomForNum2];
+const randomNum3 = newsPosition[randomForNum3];
 
 madePostFeature(randomNum1);
 madePostFeature(randomNum2);
 madePostFeature(randomNum3);
-
-
-
-
-
-
-
-
-
