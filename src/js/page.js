@@ -87,8 +87,8 @@ const createTempPage = (data) => {
   }
 };
 
-const createTempArray = (news, elementsOnPage, start) => {
-  return news.slice(
+const createTempArray = (data, elementsOnPage, start) => {
+  return data.slice(
     elementsOnPage * start,
     elementsOnPage * start + elementsOnPage
   );
@@ -110,7 +110,7 @@ const createShareBlock = () => {
   });
 };
 
-const createAllData = (start, paginEl, news, elementsOnPage, BLOG_WRAPPER) => {
+const createAllData = (start, paginEl, data, elementsOnPage, BLOG_WRAPPER) => {
   const handleSetActive = (start, paginEl) => {
     Array.from(paginEl).forEach((j) => {
       paginEl[+j.innerText - 1].classList.remove("pagin-num-active");
@@ -119,7 +119,7 @@ const createAllData = (start, paginEl, news, elementsOnPage, BLOG_WRAPPER) => {
   };
   handleSetActive(start, paginEl);
   BLOG_WRAPPER.innerText = "";
-  createTempPage(createTempArray(news, elementsOnPage, start));
+  createTempPage(createTempArray(data, elementsOnPage, start));
   createShareBlock();
 };
 
@@ -132,7 +132,8 @@ const getMaxBlogHeight = (news, elementsOnPage) => {
   });
   const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
   BLOG_WRAPPER.innerText = "";
-  return pageHeight;
+  BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
+  // return pageHeight;
 };
 
 const createNumList = (paginNums, paginNumber, paginEl, start) => {
@@ -151,7 +152,7 @@ const createNumList = (paginNums, paginNumber, paginEl, start) => {
   });
 };
 
-const madePostFeature = (randomNum) => {
+const createPostFeature = (randomNum) => {
   const itemFeature = document.createElement("li");
   itemFeature.classList.add("feature-post-list-item");
   featurePostBlock.append(itemFeature);
@@ -178,26 +179,19 @@ const madePostFeature = (randomNum) => {
   postDesc.append(featurePostDate);
 };
 
-const changeBlogsFocus = (elementsPage) => {
-  elementsOnPage = elementsPage;
-  paginNums = 1;
-  let pageHeight = getMaxBlogHeight(news, elementsOnPage);
-  BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
-  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
-  // createNumList(paginNums, paginNumber, paginEl, start);
-}
-
-let elementsOnPage = 3;
-let paginNums = Math.ceil(news.length / elementsOnPage);
+const elementsOnPage = 3;
+const paginNums = Math.ceil(news.length / elementsOnPage);
 const paginNumber = document.getElementById("pagin-num-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const paginEl = document.getElementsByClassName("pagin-num-item");
-let tempArray;
+const searchInput = document.getElementById("input-search");
 let start = 0;
 
-let pageHeight = getMaxBlogHeight(news, elementsOnPage);
-BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
+// let pageHeight = getMaxBlogHeight(news, elementsOnPage);
+// BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
+
+getMaxBlogHeight(news, elementsOnPage);
 
 createNumList(paginNums, paginNumber, paginEl, start);
 createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
@@ -240,43 +234,67 @@ const randomNum1 = newsPosition[randomForNum1];
 const randomNum2 = newsPosition[randomForNum2];
 const randomNum3 = newsPosition[randomForNum3];
 
-madePostFeature(randomNum1);
-madePostFeature(randomNum2);
-madePostFeature(randomNum3);
+createPostFeature(randomNum1);
+createPostFeature(randomNum2);
+createPostFeature(randomNum3);
+
 ///////////////////////////////////////
 
-let input = document.getElementById("input-search");
-const blogs = document.getElementsByClassName("blogs");
-let inputText = input.value.toUpperCase();
-const blogsHeading = document.getElementsByClassName("blogs-img-heading");
-const itemPagin = document.getElementsByClassName("pagin-num-item");
+searchInput.addEventListener("keyup", (e) => {
+  // 1. при пустом значении в инпуте возвращать в исходное положение
+  // 2. при несовпадении в поиске возвращать сообщение "информация не найдена"
+  // 3. сформировать актуальную пагинацию при поиске данных (сохраняя elementsOnPage = 3)
 
-input.addEventListener("focus", () => {
-  for (let i = 1; i < itemPagin.length; i++) {
-    itemPagin[i].style.display = "none";
-  }
-  changeBlogsFocus(news.length);
-})
+  const filteredData = news
+    .filter((ad) => ad.type === "new")
+    .filter((ad) =>
+      ad.title.toUpperCase().includes(e.target.value.toUpperCase())
+    );
 
-input.addEventListener("blur", () => {
-  for (let i = 0; i < itemPagin.length; i++) {
-    itemPagin[i].style.display = "block";
-  }
-  changeBlogsFocus(3);
-})
+  console.log(filteredData);
 
-const searchFunc = () => {
-  Array.from(blogs).forEach = (_, idx) => {
-    filtrationElementsHeading = blogsHeading[idx];
-    if (filtrationElementsHeading.toUpperCase().indexOf(inputText) > -1) {
-      blogs[idx].style.display = "";
-    } else {
-      blogs[idx].style.display = "none";
-    }  
-  }
-}
+  getMaxBlogHeight(filteredData, filteredData.length + 1);
 
-input.onkeyup = searchFunc();
+  createAllData(
+    start,
+    paginEl,
+    filteredData,
+    filteredData.length,
+    BLOG_WRAPPER
+  );
+});
 
+///
 
+// const blogs = document.getElementsByClassName("blogs");
+// const inputText = searchInput.value.toUpperCase();
 
+// const blogsHeading = document.getElementsByClassName("blogs-img-heading");
+// const itemPagin = document.getElementsByClassName("pagin-num-item");
+
+// searchInput.addEventListener("focus", () => {
+//   for (let i = 1; i < itemPagin.length; i++) {
+//     itemPagin[i].style.display = "none";
+//   }
+//   changeBlogsFocus(news.length);
+// });
+
+// searchInput.addEventListener("blur", () => {
+//   for (let i = 0; i < itemPagin.length; i++) {
+//     itemPagin[i].style.display = "block";
+//   }
+//   changeBlogsFocus(3);
+// });
+
+// const searchFunc = () => {
+//   Array.from(blogs).forEach = (_, idx) => {
+//     filtrationElementsHeading = blogsHeading[idx];
+//     if (filtrationElementsHeading.toUpperCase().indexOf(inputText) > -1) {
+//       blogs[idx].style.display = "";
+//     } else {
+//       blogs[idx].style.display = "none";
+//     }
+//   };
+// };
+
+// searchInput.onkeyup = searchFunc();

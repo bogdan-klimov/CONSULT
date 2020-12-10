@@ -79,7 +79,7 @@ const data = [
 const news = [
   {
     type: "new",
-    title: "Андрей 1",
+    title: "Andrey 1",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -90,7 +90,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Наталия 1",
+    title: "Nata 1",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -101,7 +101,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Наталия 2",
+    title: "Nataly 2",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -121,7 +121,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Андрей 2",
+    title: "Andrey 2",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -140,7 +140,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Андрей 3",
+    title: "Andrey 3",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -151,7 +151,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Наталия 3",
+    title: "Nataliya 3",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
@@ -171,7 +171,7 @@ const news = [
   },
   {
     type: "new",
-    title: "Группа 1",
+    title: "Group 1",
     date: "11-feb-2016",
     desc:
       "Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
