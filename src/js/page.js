@@ -178,8 +178,17 @@ const madePostFeature = (randomNum) => {
   postDesc.append(featurePostDate);
 };
 
-const elementsOnPage = 3;
-const paginNums = Math.ceil(news.length / elementsOnPage);
+const changeBlogsFocus = (elementsPage) => {
+  elementsOnPage = elementsPage;
+  paginNums = 1;
+  let pageHeight = getMaxBlogHeight(news, elementsOnPage);
+  BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
+  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+  // createNumList(paginNums, paginNumber, paginEl, start);
+}
+
+let elementsOnPage = 3;
+let paginNums = Math.ceil(news.length / elementsOnPage);
 const paginNumber = document.getElementById("pagin-num-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
@@ -187,11 +196,11 @@ const paginEl = document.getElementsByClassName("pagin-num-item");
 let tempArray;
 let start = 0;
 
-const pageHeight = getMaxBlogHeight(news, elementsOnPage);
-createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+let pageHeight = getMaxBlogHeight(news, elementsOnPage);
 BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
 
 createNumList(paginNums, paginNumber, paginEl, start);
+createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 
 const nextPage = () => {
   if (start > paginNums - 2) {
@@ -215,7 +224,6 @@ paginEl[0].classList.add("pagin-num-active");
 
 ////////////////////////////////////////////////////////////////////
 const featurePostBlock = document.getElementById("featured-post-list");
-
 let newsPosition = [];
 
 for (let el in news) {
@@ -235,3 +243,40 @@ const randomNum3 = newsPosition[randomForNum3];
 madePostFeature(randomNum1);
 madePostFeature(randomNum2);
 madePostFeature(randomNum3);
+///////////////////////////////////////
+
+let input = document.getElementById("input-search");
+const blogs = document.getElementsByClassName("blogs");
+let inputText = input.value.toUpperCase();
+const blogsHeading = document.getElementsByClassName("blogs-img-heading");
+const itemPagin = document.getElementsByClassName("pagin-num-item");
+
+input.addEventListener("focus", () => {
+  for (let i = 1; i < itemPagin.length; i++) {
+    itemPagin[i].style.display = "none";
+  }
+  changeBlogsFocus(news.length);
+})
+
+input.addEventListener("blur", () => {
+  for (let i = 0; i < itemPagin.length; i++) {
+    itemPagin[i].style.display = "block";
+  }
+  changeBlogsFocus(3);
+})
+
+const searchFunc = () => {
+  Array.from(blogs).forEach = (_, idx) => {
+    filtrationElementsHeading = blogsHeading[idx];
+    if (filtrationElementsHeading.toUpperCase().indexOf(inputText) > -1) {
+      blogs[idx].style.display = "";
+    } else {
+      blogs[idx].style.display = "none";
+    }  
+  }
+}
+
+input.onkeyup = searchFunc();
+
+
+
