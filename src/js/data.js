@@ -87,6 +87,8 @@ const news = [
     src: "#",
     position: 0,
     link: "#",
+    article:
+      "Lorem Ipsum is simply dummy text of the  printingand typesetting industry. Lorem Ipsum has been the i ... ",
   },
   {
     type: "new",

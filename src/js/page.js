@@ -192,24 +192,24 @@ getMaxBlogHeight(news, elementsOnPage);
 createNumList(paginNums, paginNumber, paginEl, start);
 createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 
-const nextPage = () => {
+const nextPage = (data) => {
   if (start > paginNums - 2) {
     start = -1;
   }
   start++;
-  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+  createAllData(start, paginEl, data, elementsOnPage, BLOG_WRAPPER);
 };
 
-const prevPage = () => {
+const prevPage = (data) => {
   if (start < 1) {
     start = paginNums;
   }
   start--;
-  createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
+  createAllData(start, paginEl, data, elementsOnPage, BLOG_WRAPPER);
 };
 
-nextBtn.addEventListener("click", nextPage);
-prevBtn.addEventListener("click", prevPage);
+nextBtn.addEventListener("click", () => nextPage(news));
+prevBtn.addEventListener("click", () => prevPage(news));
 paginEl[0].classList.add("pagin-num-active");
 
 ////////////////////////////////////////////////////////////////////
@@ -235,18 +235,22 @@ createPostFeature(randomNum2);
 createPostFeature(randomNum3);
 
 ///////////////////////////////////////
+
 const errorText = document.getElementById("error-text");
 const blogs = document.getElementsByClassName("blogs");
 const paginNumberBlock = document.getElementById("arrows-block");
 
 searchInput.addEventListener("keyup", (e) => {
-  // 3. сформировать актуальную пагинацию при поиске данных (сохраняя elementsOnPage = 3)
+  console.log(e);
+
   const filteredData = news
     .filter((ad) => ad.type === "new")
     .filter((ad) =>
       ad.title.toUpperCase().includes(e.target.value.toUpperCase())
     );
+
   getMaxBlogHeight(filteredData, filteredData.length);
+
   createAllData(
     start,
     paginEl,
@@ -254,25 +258,20 @@ searchInput.addEventListener("keyup", (e) => {
     filteredData.length,
     BLOG_WRAPPER
   );
+
   paginNumberBlock.style.display = "none";
-  if (e.target.value === "") {
+
+  if (!e.target.value) {
     getMaxBlogHeight(news, elementsOnPage);
-    createAllData(
-      start,
-      paginEl,
-      news,
-      elementsOnPage,
-      BLOG_WRAPPER
-    );
+    createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
     paginNumberBlock.style.display = "flex";
   }
+
   if (blogs.length === 0) {
     const errorText = document.createElement("span");
     errorText.classList.add("error-text");
     BLOG_WRAPPER.append(errorText);
-    errorText.innerText = "Информация не найдена"
+    errorText.innerText = "Data not found";
     paginNumberBlock.style.display = "none";
   }
 });
-
-
