@@ -132,8 +132,7 @@ const getMaxBlogHeight = (news, elementsOnPage) => {
   });
   const pageHeight = Math.max.apply(null, arr) * elementsOnPage;
   BLOG_WRAPPER.innerText = "";
-  BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
-  // return pageHeight;
+  BLOG_WRAPPER.style.height = pageHeight + 200 + "px";
 };
 
 const createNumList = (paginNums, paginNumber, paginEl, start) => {
@@ -188,9 +187,6 @@ const paginEl = document.getElementsByClassName("pagin-num-item");
 const searchInput = document.getElementById("input-search");
 let start = 0;
 
-// let pageHeight = getMaxBlogHeight(news, elementsOnPage);
-// BLOG_WRAPPER.style.height = pageHeight + 100 + "px";
-
 getMaxBlogHeight(news, elementsOnPage);
 
 createNumList(paginNums, paginNumber, paginEl, start);
@@ -239,22 +235,18 @@ createPostFeature(randomNum2);
 createPostFeature(randomNum3);
 
 ///////////////////////////////////////
+const errorText = document.getElementById("error-text");
+const blogs = document.getElementsByClassName("blogs");
+const paginNumberBlock = document.getElementById("arrows-block");
 
 searchInput.addEventListener("keyup", (e) => {
-  // 1. при пустом значении в инпуте возвращать в исходное положение
-  // 2. при несовпадении в поиске возвращать сообщение "информация не найдена"
   // 3. сформировать актуальную пагинацию при поиске данных (сохраняя elementsOnPage = 3)
-
   const filteredData = news
     .filter((ad) => ad.type === "new")
     .filter((ad) =>
       ad.title.toUpperCase().includes(e.target.value.toUpperCase())
     );
-
-  console.log(filteredData);
-
-  getMaxBlogHeight(filteredData, filteredData.length + 1);
-
+  getMaxBlogHeight(filteredData, filteredData.length);
   createAllData(
     start,
     paginEl,
@@ -262,39 +254,25 @@ searchInput.addEventListener("keyup", (e) => {
     filteredData.length,
     BLOG_WRAPPER
   );
+  paginNumberBlock.style.display = "none";
+  if (e.target.value === "") {
+    getMaxBlogHeight(news, elementsOnPage);
+    createAllData(
+      start,
+      paginEl,
+      news,
+      elementsOnPage,
+      BLOG_WRAPPER
+    );
+    paginNumberBlock.style.display = "flex";
+  }
+  if (blogs.length === 0) {
+    const errorText = document.createElement("span");
+    errorText.classList.add("error-text");
+    BLOG_WRAPPER.append(errorText);
+    errorText.innerText = "Информация не найдена"
+    paginNumberBlock.style.display = "none";
+  }
 });
 
-///
 
-// const blogs = document.getElementsByClassName("blogs");
-// const inputText = searchInput.value.toUpperCase();
-
-// const blogsHeading = document.getElementsByClassName("blogs-img-heading");
-// const itemPagin = document.getElementsByClassName("pagin-num-item");
-
-// searchInput.addEventListener("focus", () => {
-//   for (let i = 1; i < itemPagin.length; i++) {
-//     itemPagin[i].style.display = "none";
-//   }
-//   changeBlogsFocus(news.length);
-// });
-
-// searchInput.addEventListener("blur", () => {
-//   for (let i = 0; i < itemPagin.length; i++) {
-//     itemPagin[i].style.display = "block";
-//   }
-//   changeBlogsFocus(3);
-// });
-
-// const searchFunc = () => {
-//   Array.from(blogs).forEach = (_, idx) => {
-//     filtrationElementsHeading = blogsHeading[idx];
-//     if (filtrationElementsHeading.toUpperCase().indexOf(inputText) > -1) {
-//       blogs[idx].style.display = "";
-//     } else {
-//       blogs[idx].style.display = "none";
-//     }
-//   };
-// };
-
-// searchInput.onkeyup = searchFunc();
