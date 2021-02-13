@@ -1,43 +1,59 @@
 const BLOG_WRAPPER = document.getElementById("main-block-blog-wrapper");
+const elementsOnPage = 3;
+const paginNums = Math.ceil(news.length / elementsOnPage);
+const paginNumber = document.getElementById("pagin-num-text");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const paginEl = document.getElementsByClassName("pagin-num-item");
+const searchInput = document.getElementById("input-search");
+const btns = document.getElementsByClassName("button");
+const modalWindow = document.getElementById("modal-window");
+const modalWindowBackground = document.getElementById("modal-window-background");
+const iconClose = document.getElementById("icon-close");
+const modalWindowBlog = document.getElementById("modal-window-blog");
+const mainSection = document.getElementsByClassName("main-section")[0];
+const featurePostBlock = document.getElementById("featured-post-list");
+let start = 0;
+
+
+const madeBlock = (
+  nameEl,
+  parEl,
+  className,
+  innerTextEl = null,
+  atributeName = null,
+  atributeItem = null
+) => {
+  nameEl.className = className;
+  parEl.append(nameEl);
+  nameEl.innerText = innerTextEl;
+  nameEl.setAttribute(atributeName, atributeItem);
+};
+
+const navigateElements = (blog, data) => {
+  const actions = document.createElement("div");
+  const btn = document.createElement("div");
+  const links = document.createElement("div");
+  const shareBlock = document.createElement("div");
+  const shareDate = document.createElement("span");
+  const shareText = document.createElement("span");
+  const iconsBlock = document.createElement("div");
+  const linksIcon = document.createElement("a");
+  const linksIcon2 = document.createElement("a");
+  const linksIcon3 = document.createElement("a");
+  madeBlock(actions, blog, "actions");
+  madeBlock(btn, actions, "button", "Read more", "href", "#");
+  madeBlock(links, actions, "links");
+  madeBlock(shareBlock, links, "share-block icon-share");
+  madeBlock(shareDate, links, "share-block-date", data);
+  madeBlock(shareText, links, "share-block-text", "Share:");
+  madeBlock(iconsBlock, actions, "icons-block");
+  madeBlock(linksIcon, iconsBlock, "icon-facebook", "", "href", "#");
+  madeBlock(linksIcon2, iconsBlock, "icon-twitter", "", "href", "#");
+  madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
+};
 
 const createTempPage = (data) => {
-  const madeBlock = (
-    nameEl,
-    parEl,
-    className,
-    innerTextEl = null,
-    atributeName = null,
-    atributeItem = null
-  ) => {
-    nameEl.className = className;
-    parEl.append(nameEl);
-    nameEl.innerText = innerTextEl;
-    nameEl.setAttribute(atributeName, atributeItem);
-  };
-
-  const navigateElements = (blog, data) => {
-    const actions = document.createElement("div");
-    const btn = document.createElement("a");
-    const links = document.createElement("div");
-    const shareBlock = document.createElement("div");
-    const shareDate = document.createElement("span");
-    const shareText = document.createElement("span");
-    const iconsBlock = document.createElement("div");
-    const linksIcon = document.createElement("a");
-    const linksIcon2 = document.createElement("a");
-    const linksIcon3 = document.createElement("a");
-    madeBlock(actions, blog, "actions");
-    madeBlock(btn, actions, "button", "Read more", "href", "#");
-    madeBlock(links, actions, "links");
-    madeBlock(shareBlock, links, "share-block icon-share");
-    madeBlock(shareDate, links, "share-block-date", data);
-    madeBlock(shareText, links, "share-block-text", "Share:");
-    madeBlock(iconsBlock, actions, "icons-block");
-    madeBlock(linksIcon, iconsBlock, "icon-facebook", "", "href", "#");
-    madeBlock(linksIcon2, iconsBlock, "icon-twitter", "", "href", "#");
-    madeBlock(linksIcon3, iconsBlock, "icon-gplus", "", "href", "#");
-  };
-
   for (let el in data) {
     if (data[el].type === "audio") {
       const blog = document.createElement("div");
@@ -60,7 +76,7 @@ const createTempPage = (data) => {
       const blogDesc = document.createElement("div");
       madeBlock(blog, BLOG_WRAPPER, "blogs");
       madeBlock(blogImg, blog, "blogs-img");
-      madeBlock(img, blogImg, "#", "", "src", data[el].img);
+      madeBlock(img, blogImg, "blogImage", "", "src", data[el].img);
       madeBlock(dateImg, blogImg, "blogs-img-date", data[el].date);
       madeBlock(heading, blogImg, "blogs-img-heading", data[el].title);
       madeBlock(blogDesc, blog, "blogs-description", data[el].desc);
@@ -81,7 +97,6 @@ const createTempPage = (data) => {
         "blue-block-wrapper-text",
         data[el].desc
       );
-
       navigateElements(blog, data[el].date);
     }
   }
@@ -121,6 +136,7 @@ const createAllData = (start, paginEl, data, elementsOnPage, BLOG_WRAPPER) => {
   BLOG_WRAPPER.innerText = "";
   createTempPage(createTempArray(data, elementsOnPage, start));
   createShareBlock();
+  creatModalWindow();
 };
 
 const getMaxBlogHeight = (news, elementsOnPage) => {
@@ -178,20 +194,6 @@ const createPostFeature = (randomNum) => {
   postDesc.append(featurePostDate);
 };
 
-const elementsOnPage = 3;
-const paginNums = Math.ceil(news.length / elementsOnPage);
-const paginNumber = document.getElementById("pagin-num-text");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const paginEl = document.getElementsByClassName("pagin-num-item");
-const searchInput = document.getElementById("input-search");
-let start = 0;
-
-getMaxBlogHeight(news, elementsOnPage);
-
-createNumList(paginNums, paginNumber, paginEl, start);
-createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
-
 const nextPage = (data) => {
   if (start > paginNums - 2) {
     start = -1;
@@ -208,12 +210,64 @@ const prevPage = (data) => {
   createAllData(start, paginEl, data, elementsOnPage, BLOG_WRAPPER);
 };
 
+const switchFeatureNumber = (num1, num2) => {
+  if (num1 === num2) {num1 = newsPosition[randomForNum1];}
+}   
+
+const cheackedPostFeature = (num1, num2) => {
+  if (num1 != num2) {
+    return
+  } else {
+    switchFeatureNumber(num1, num2);
+    cheackedPostFeature();
+  }
+} 
+
+const creatModalWindowBlock = (value) => {
+  const blog = document.createElement("div");
+  const blogImg = document.createElement("div");
+  const img = document.createElement("img");
+  const dateImg = document.createElement("div");
+  const heading = document.createElement("div");
+  const blogDesc = document.createElement("div");
+  madeBlock(blog, modalWindowBlog, "blogs");
+  madeBlock(blogImg, blog, "blogs-img");
+  madeBlock(img, blogImg, "blogImage", "", "src", news[value].img);
+  madeBlock(dateImg, blogImg, "blogs-img-date", news[value].date);
+  madeBlock(heading, blogImg, "blogs-img-heading", news[value].title);
+  madeBlock(blogDesc, blog, "blogs-description", news[value].article);
+  blogDesc.style.color = "white";
+};
+
+const creatModalWindow = () => {
+  modalWindowBackground.addEventListener("click", () => {
+    modalWindow.className = "modal-window";
+    modalWindowBackground.className = "";
+    iconClose.classList.remove = "icon-close-active";
+    document.body.style.overflow = "";
+    modalWindowBlog.innerHTML = "";
+  });
+  
+  Array.from(btns).forEach( (_, idx) => {
+    btns[idx].addEventListener("click", () => {
+      modalWindow.classList.add("modal-window-active");
+      modalWindowBackground.classList.add("modal-window-background-active");
+      iconClose.classList.add("icon-close-active");
+      document.body.style.overflow = "hidden";
+  
+      creatModalWindowBlock(idx);
+    });
+  });
+}
+
+getMaxBlogHeight(news, elementsOnPage);
+createNumList(paginNums, paginNumber, paginEl, start);
+createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 nextBtn.addEventListener("click", () => nextPage(news));
 prevBtn.addEventListener("click", () => prevPage(news));
 paginEl[0].classList.add("pagin-num-active");
-
 ////////////////////////////////////////////////////////////////////
-const featurePostBlock = document.getElementById("featured-post-list");
+
 let newsPosition = [];
 
 for (let el in news) {
@@ -229,6 +283,10 @@ const randomForNum3 = Math.round(Math.random() * (newsPosition.length - 1));
 const randomNum1 = newsPosition[randomForNum1];
 const randomNum2 = newsPosition[randomForNum2];
 const randomNum3 = newsPosition[randomForNum3];
+
+cheackedPostFeature(randomNum1, randomNum2);
+cheackedPostFeature(randomNum2, randomNum3);
+cheackedPostFeature(randomNum3, randomNum1);
 
 createPostFeature(randomNum1);
 createPostFeature(randomNum2);
@@ -275,3 +333,5 @@ searchInput.addEventListener("keyup", (e) => {
     paginNumberBlock.style.display = "none";
   }
 });
+
+
