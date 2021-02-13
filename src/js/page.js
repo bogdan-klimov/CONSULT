@@ -6,12 +6,9 @@ const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const paginEl = document.getElementsByClassName("pagin-num-item");
 const searchInput = document.getElementById("input-search");
-const btns = document.getElementsByClassName("button");
-const modalWindow = document.getElementById("modal-window");
 const modalWindowBackground = document.getElementById("modal-window-background");
 const iconClose = document.getElementById("icon-close");
 const modalWindowBlog = document.getElementById("modal-window-blog");
-const mainSection = document.getElementsByClassName("main-section")[0];
 const featurePostBlock = document.getElementById("featured-post-list");
 let start = 0;
 
@@ -136,7 +133,7 @@ const createAllData = (start, paginEl, data, elementsOnPage, BLOG_WRAPPER) => {
   BLOG_WRAPPER.innerText = "";
   createTempPage(createTempArray(data, elementsOnPage, start));
   createShareBlock();
-  creatModalWindow();
+  createModalWindow();
 };
 
 const getMaxBlogHeight = (news, elementsOnPage) => {
@@ -219,11 +216,11 @@ const cheackedPostFeature = (num1, num2) => {
     return
   } else {
     switchFeatureNumber(num1, num2);
-    cheackedPostFeature();
+    // cheackedPostFeature();
   }
 } 
 
-const creatModalWindowBlock = (value) => {
+const createModalWindowBlock = (id) => {
   const blog = document.createElement("div");
   const blogImg = document.createElement("div");
   const img = document.createElement("img");
@@ -232,14 +229,19 @@ const creatModalWindowBlock = (value) => {
   const blogDesc = document.createElement("div");
   madeBlock(blog, modalWindowBlog, "blogs");
   madeBlock(blogImg, blog, "blogs-img");
-  madeBlock(img, blogImg, "blogImage", "", "src", news[value].img);
-  madeBlock(dateImg, blogImg, "blogs-img-date", news[value].date);
-  madeBlock(heading, blogImg, "blogs-img-heading", news[value].title);
-  madeBlock(blogDesc, blog, "blogs-description", news[value].article);
+  madeBlock(img, blogImg, "blogImage", "", "src", news[id].img);
+  madeBlock(dateImg, blogImg, "blogs-img-date", news[id].date);
+  madeBlock(heading, blogImg, "blogs-img-heading", news[id].title);
+  madeBlock(blogDesc, blog, "blogs-description", news[id].article);
   blogDesc.style.color = "white";
+  console.log('id: ', id);
 };
 
-const creatModalWindow = () => {
+const createModalWindow = () => {
+  const modalWindow = document.getElementById("modal-window");
+  const btns = document.getElementsByClassName("button");
+  // fix this place
+  // перебирать по news
   modalWindowBackground.addEventListener("click", () => {
     modalWindow.className = "modal-window";
     modalWindowBackground.className = "";
@@ -250,12 +252,12 @@ const creatModalWindow = () => {
   
   Array.from(btns).forEach( (_, idx) => {
     btns[idx].addEventListener("click", () => {
+      console.log('btns: ', btns[idx]);
       modalWindow.classList.add("modal-window-active");
       modalWindowBackground.classList.add("modal-window-background-active");
       iconClose.classList.add("icon-close-active");
       document.body.style.overflow = "hidden";
-  
-      creatModalWindowBlock(idx);
+      createModalWindowBlock(idx);
     });
   });
 }
