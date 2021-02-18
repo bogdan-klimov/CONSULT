@@ -6,12 +6,8 @@ const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const paginEl = document.getElementsByClassName("pagin-num-item");
 const searchInput = document.getElementById("input-search");
-const modalWindowBackground = document.getElementById("modal-window-background");
-const iconClose = document.getElementById("icon-close");
-const modalWindowBlog = document.getElementById("modal-window-blog");
 const featurePostBlock = document.getElementById("featured-post-list");
 let start = 0;
-
 
 const madeBlock = (
   nameEl,
@@ -207,74 +203,73 @@ const prevPage = (data) => {
   createAllData(start, paginEl, data, elementsOnPage, BLOG_WRAPPER);
 };
 
-const switchFeatureNumber = (num1, num2) => {
-  if (num1 === num2) {num1 = newsPosition[randomForNum1];}
-}   
-
-const cheackedPostFeature = (num1, num2) => {
-  if (num1 != num2) {
-    return
-  } else {
-    switchFeatureNumber(num1, num2);
-    // cheackedPostFeature();
-  }
-} 
-
-const createModalWindowBlock = (id) => {
-  const blog = document.createElement("div");
-  const blogImg = document.createElement("div");
-  const img = document.createElement("img");
-  const dateImg = document.createElement("div");
-  const heading = document.createElement("div");
-  const blogDesc = document.createElement("div");
-  madeBlock(blog, modalWindowBlog, "blogs");
-  madeBlock(blogImg, blog, "blogs-img");
-  madeBlock(img, blogImg, "blogImage", "", "src", news[id].img);
-  madeBlock(dateImg, blogImg, "blogs-img-date", news[id].date);
-  madeBlock(heading, blogImg, "blogs-img-heading", news[id].title);
-  madeBlock(blogDesc, blog, "blogs-description", news[id].article);
-  blogDesc.style.color = "white";
-  console.log('id: ', id);
-};
-
 const createModalWindow = () => {
-  const modalWindow = document.getElementById("modal-window");
-  const btns = document.getElementsByClassName("button");
-  // fix this place
-  // перебирать по news
-  modalWindowBackground.addEventListener("click", () => {
-    modalWindow.className = "modal-window";
-    modalWindowBackground.className = "";
-    iconClose.classList.remove = "icon-close-active";
-    document.body.style.overflow = "";
-    modalWindowBlog.innerHTML = "";
-  });
+
+  let btns = document.getElementsByClassName("button");
   
   Array.from(btns).forEach( (_, idx) => {
     btns[idx].addEventListener("click", () => {
+      const modalWindow = document.createElement("div");
+      modalWindow.classList.add("modal-window");
+      document.body.prepend(modalWindow);
+
+      const modalWindowBlog = document.createElement("div")
+      modalWindowBlog.setAttribute("id", "modal-window-blog")
+      modalWindowBlog.classList.add("modal-window-blog")
+      modalWindow.append(modalWindowBlog)
+
+      const modalWindowBackground = document.createElement("div")
+      modalWindowBackground.classList.add("modal-window-background")
+      modalWindow.append(modalWindowBackground)
+
+      const iconClose = document.createElement("div");
+      iconClose.innerHTML = "&#10006;"
+      iconClose.classList.add("icon-close")
+      iconClose.setAttribute("id", "icon-close")
+      modalWindowBackground.append(iconClose)
+
       console.log('btns: ', btns[idx]);
-      modalWindow.classList.add("modal-window-active");
-      modalWindowBackground.classList.add("modal-window-background-active");
-      iconClose.classList.add("icon-close-active");
       document.body.style.overflow = "hidden";
-      createModalWindowBlock(idx);
+
+      const blog = document.createElement("div");
+      const blogImg = document.createElement("div");
+      const img = document.createElement("img");
+      const dateImg = document.createElement("div");
+      const heading = document.createElement("div");
+      const blogDesc = document.createElement("div");
+      madeBlock(blog, modalWindowBlog, "blogs");
+      madeBlock(blogImg, blog, "blogs-img");
+      madeBlock(img, blogImg, "blogImage", "", "src", news[idx + 3].img);
+      madeBlock(dateImg, blogImg, "blogs-img-date", news[idx + 3].date);
+      madeBlock(heading, blogImg, "blogs-img-heading", news[idx + 3].title);
+      madeBlock(blogDesc, blog, "blogs-description", news[idx + 3].article);
+      
+      blogDesc.style.color = "white";
+
+      modalWindowBackground.addEventListener("click", () => {
+        document.body.style.overflow = "visible";
+        modalWindow.remove()
+      });
+      console.log('id: ', idx + 3);
     });
+    
   });
 }
 
 getMaxBlogHeight(news, elementsOnPage);
 createNumList(paginNums, paginNumber, paginEl, start);
-createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 nextBtn.addEventListener("click", () => nextPage(news));
 prevBtn.addEventListener("click", () => prevPage(news));
+createAllData(start, paginEl, news, elementsOnPage, BLOG_WRAPPER);
 paginEl[0].classList.add("pagin-num-active");
+
 ////////////////////////////////////////////////////////////////////
 
 let newsPosition = [];
 
 for (let el in news) {
   if (news[el].type === "new") {
-    newsPosition.push(news[el].position);
+    newsPosition.push(news[el].id);
   }
 }
 
@@ -285,10 +280,6 @@ const randomForNum3 = Math.round(Math.random() * (newsPosition.length - 1));
 const randomNum1 = newsPosition[randomForNum1];
 const randomNum2 = newsPosition[randomForNum2];
 const randomNum3 = newsPosition[randomForNum3];
-
-cheackedPostFeature(randomNum1, randomNum2);
-cheackedPostFeature(randomNum2, randomNum3);
-cheackedPostFeature(randomNum3, randomNum1);
 
 createPostFeature(randomNum1);
 createPostFeature(randomNum2);
@@ -334,6 +325,4 @@ searchInput.addEventListener("keyup", (e) => {
     errorText.innerText = "Data not found";
     paginNumberBlock.style.display = "none";
   }
-});
-
-
+})
